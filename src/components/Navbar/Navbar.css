@@ -1,0 +1,57 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10rem;
+    width: 100rem;
+}
+
+.logo-image {
+    width: 8rem;
+}
+
+div.controls{
+    display: flex;
+    align-items: center
+}
+
+input{
+    outline: none;
+    font-size: 1rem;
+    padding: .3rem;
+    border:solid 1px #ccc;
+    border-right: 0;
+}
+
+button.btn-search{
+    background-color: transparent;
+    border: solid 1px #ccc;
+    outline: none;
+    font-size: 1rem;
+    padding: .3rem;
+    color: #ccc;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+button.btn-search:hover{
+    background-color: #ccc;
+    color: #fff;
+}
+
+button.btn-menu{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.5rem;
+    padding: .3rem;
+    color: #959595;
+    transition: all .4s ease-in-out;
+    cursor: pointer;
+    transform: scale(0.8);
+}
+
+button.btn-menu:hover{
+    transform: scale(1);
+}
