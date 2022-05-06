@@ -1,0 +1,42 @@
+.topNews{
+    width: 100rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 3rem 0;
+}
+
+.card-top{
+    width: 100rem;
+    display: grid;
+    grid-template-columns: 50rem 50rem;
+    grid-template-rows: auto;
+}
+
+.card-body-top{
+    width: 75%;
+    justify-self: center;
+    align-self: center;
+}
+
+.card-body-top h1{
+    font-size: 4rem;
+    padding-bottom: 2rem;
+}
+
+.card-body-top p.text{
+    font-size: 1.2rem;
+    padding-bottom: 3rem;
+    line-height: 2rem;
+}
+
+.card-image-top{
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+}
+
+
+.card-image-top img{
+    width: 100%;
+}
+
