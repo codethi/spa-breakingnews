@@ -15,16 +15,20 @@ function Home() {
 
   useEffect(() => {
     async function getTopNews() {
+      setIsLoading(true);
       const resp = await fetch(`${baseURL}/posts/top`);
       const data = await resp.json();
       setTopNews(data.post);
+      setIsLoading(false);
     }
 
     async function getAllNews() {
+      setIsLoading(true);
       const resp = await fetch(`${baseURL}/posts`);
       const data = await resp.json();
       setNews(data.results);
       setNextUrl(data.nextUrl);
+      setIsLoading(false);
     }
 
     getTopNews();
@@ -56,6 +60,12 @@ function Home() {
     }, 250);
   };
 
+  if (isLoading) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <section className="container">
       <header className="top-news">
@@ -68,7 +78,7 @@ function Home() {
         })}
       </section>
 
-      <section className="loading">{isLoading ? <Loading /> : ""}</section>
+     {/*  <section className="loading">{isLoading ? <Loading /> : ""}</section> */}
     </section>
   );
 }

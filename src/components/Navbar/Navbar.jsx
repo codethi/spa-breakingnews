@@ -15,10 +15,20 @@ function Navbar() {
     }
   }
 
+  function goHome() {
+    navigate("/")
+  }
+
   return (
     <>
       <nav>
-        <img src={logo} className="logo-image" />
+        <div className="space-btn-menu">
+          <button type="button" className="btn-menu">
+            <i className="bi bi-list"></i>
+          </button>
+        </div>
+
+        <img src={logo} className="logo-image" onClick={goHome} />
 
         <div className="controls">
           <div className="input-search-space">
@@ -30,9 +40,6 @@ function Navbar() {
               className="search-input"
             />
           </div>
-          <button type="button" className="btn-menu">
-            <i className="bi bi-list"></i>
-          </button>
         </div>
       </nav>
     </>

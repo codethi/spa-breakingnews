@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CardSearchNews from "../../components/CardSearchNews/CardSearchNews";
 
 import "./SearchResult.css";
 import notfound from "../../images/notfound.png";
+import Loading from "../../components/Loading/Loading";
 
 function SearchResult() {
   const { title } = useParams();
   const [news, setNews] = useState([]);
-  let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   const baseURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function searchNews() {
+      setIsLoading(true);
       const resp = await fetch(`${baseURL}/posts/search?title=${title}`);
       const data = await resp.json();
       if (resp.status == 200) {
@@ -21,9 +23,16 @@ function SearchResult() {
       } else {
         setNews([]);
       }
+      setIsLoading(false);
     }
-    searchNews();
+    if (title == "") {
+      searchNews();
+    }
   }, [title]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <section className="container-results">

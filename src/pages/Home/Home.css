@@ -6,7 +6,6 @@
     grid-template-areas: 
     "topNews topNews topNews topNews"
     "news news news news"
-    "load load load load"
     ;
 }
 
@@ -20,8 +19,4 @@
     grid-gap: 3.5rem;
     grid-area: news;
     padding: 2rem 7rem 5rem 7rem; 
-}
-
-.loading{
-    grid-area: load;
 }

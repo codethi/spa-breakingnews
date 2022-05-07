@@ -1,6 +1,6 @@
 import "./TopNews.css";
 
-function TopNews({post}) {
+function TopNews({ post, isLoading }) {
   return (
     <section className="topNews">
       <div className="card-top">

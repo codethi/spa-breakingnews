@@ -2,6 +2,13 @@
     display: flex;
     border-bottom: 1px solid #ccc;
     padding: 2rem;
+    transform: scale(.9);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.card-search:hover{
+    transform: scale(1);
 }
 
 .card-search-body {

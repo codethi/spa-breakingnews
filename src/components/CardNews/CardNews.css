@@ -14,7 +14,6 @@
 
 .card:hover{
     transform: scale(1.1);
-
 }
 
 .card h2 {
@@ -32,6 +31,7 @@
     height: 7rem;
     padding-bottom: 1rem;
     grid-area: image;
+    object-fit: cover;
 }
 
 p.text {

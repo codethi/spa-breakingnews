@@ -3,17 +3,20 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
 }
 
 .logo-image {
     width: 8rem;
-    padding-left: 10rem;
+    height: 3.5rem;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 div.controls {
     display: flex;
     align-items: center;
-    padding-right: 10rem;
 }
 
 .input-search-space {
@@ -21,6 +24,7 @@ div.controls {
     width: 200px;
     display: flex;
     align-items: center;
+    margin-right: 1rem;
 }
 
 .bi-search {
@@ -45,6 +49,13 @@ div.controls {
     border-radius: .3rem;
 }
 
+.space-btn-menu {
+    width: 200px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1rem;
+}
+
 button.btn-menu {
     background-color: transparent;
     border: none;
@@ -55,6 +66,7 @@ button.btn-menu {
     transition: all .4s ease-in-out;
     cursor: pointer;
     transform: scale(0.8);
+
 }
 
 button.btn-menu:hover {

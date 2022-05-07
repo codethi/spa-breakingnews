@@ -1,10 +1,8 @@
-.topNews {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+.topNews {    
     padding: 3rem 0;
     width: 80%;
     margin: 0 auto;
-    
+    border-bottom: 1px solid #ccc;
 }
 
 .card-top {
