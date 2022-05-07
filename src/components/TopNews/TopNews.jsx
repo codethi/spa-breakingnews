@@ -6,8 +6,8 @@ function TopNews({post}) {
       <div className="card-top">
         <div className="card-body-top">
           <h1>{post.title}</h1>
-          <p className="text">{post.text}</p>
-          <p>Created by {post.name}</p>
+          <p className="text-top">{post.text}</p>
+          <p>by {post.name}</p>
         </div>
 
         <div className="card-image-top">

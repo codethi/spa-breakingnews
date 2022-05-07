@@ -1,36 +1,49 @@
-
-
 .card {
-    width: 80%;
-    justify-self: center;
-    border-right: solid 1px #ccc;
-    border-left: solid 1px #ccc;
-    padding: 1rem 3rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all .3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.card-body {
-    width: 100%;
-    justify-self: center;
-    align-self: center;
+.card:hover{
+    transform: scale(1.1);
+
 }
 
 .card h2 {
     padding-bottom: 1rem;
-}
-
-.card-body p.text {
     font-size: 1rem;
-    padding-bottom: 1rem;
+    grid-area: title;
 }
 
 .card-image {
     width: 100%;
-    justify-self: center;
-    align-self: center;
 }
 
 .card-image img {
     width: 100%;
-    height: 10rem;
+    height: 7rem;
     padding-bottom: 1rem;
+    grid-area: image;
+}
+
+p.text {
+    font-size: 1rem;
+    max-width: 20ch;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    grid-area: text;
+}
+
+p.user{
+    color: #6d6d6d;
+    font-size: .8rem;
 }

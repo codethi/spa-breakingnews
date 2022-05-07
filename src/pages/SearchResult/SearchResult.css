@@ -1,0 +1,32 @@
+.container-results {
+    padding: 0 7rem 4rem 7rem;
+}
+
+.text-results{
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    background-color: #F3F2EF;
+    border-radius: .5rem;
+}
+.search-news {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.notfound-image{
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    padding: 2rem;
+}
+
+.subtitle-result{
+    font-size: .8rem;
+}
+
+.text-results h2{
+    font-size: 2rem;
+    padding-top: 1rem;
+}

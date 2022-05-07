@@ -1,0 +1,23 @@
+.card-search {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 2rem;
+}
+
+.card-search-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-search-image img {
+    width: 15rem;
+    height: 10rem;
+    object-fit: cover;
+    padding: 1rem;
+}
+
+.user-search {
+    color: #6d6d6d;
+    font-size: .8rem;
+}

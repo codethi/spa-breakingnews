@@ -7,10 +7,9 @@ function CardNews({ news }) {
       <div className="card-image">
         <img src={news.banner} alt={news.title} />
       </div>
-      <div className="card-body">
         <p className="text">{news.text}</p>
-        <p>Created by {news.name}</p>
-      </div>
+        <p className="user">by {news.name}</p>
+     
     </div>
   );
 }

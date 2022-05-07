@@ -1,0 +1,27 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+    grid-template-areas: 
+    "topNews topNews topNews topNews"
+    "news news news news"
+    "load load load load"
+    ;
+}
+
+.top-news{
+    grid-area: topNews;
+}
+
+.news {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 3.5rem;
+    grid-area: news;
+    padding: 2rem 7rem 5rem 7rem; 
+}
+
+.loading{
+    grid-area: load;
+}
