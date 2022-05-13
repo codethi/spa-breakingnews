@@ -24,7 +24,7 @@ div.controls {
     width: 200px;
     display: flex;
     align-items: center;
-    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 .bi-search {
@@ -52,23 +52,27 @@ div.controls {
 .space-btn-menu {
     width: 200px;
     display: flex;
-    justify-content: flex-start;
-    margin-left: 1rem;
+    justify-content: flex-end;
+    margin-right: 1rem;
 }
 
 button.btn-menu {
-    background-color: transparent;
-    border: none;
+    background-color: #007ca6;
+    border: solid 1px #007ca6;
     outline: none;
-    font-size: 2.5rem;
-    padding: .3rem;
-    color: #959595;
+    font-size: 1rem;
+    padding: .4rem;
+    color: #fff;
     transition: all .4s ease-in-out;
     cursor: pointer;
-    transform: scale(0.8);
+    border-radius: .3rem;
+    font-family: Roboto, arial;
+    width: 40%;
+    font-weight: 500;
+    letter-spacing: .1rem;
 
 }
 
 button.btn-menu:hover {
-    transform: scale(1);
+    background-color: #005673;
 }

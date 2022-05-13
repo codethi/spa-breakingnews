@@ -25,9 +25,7 @@ function SearchResult() {
       }
       setIsLoading(false);
     }
-    if (title == "") {
-      searchNews();
-    }
+    searchNews();
   }, [title]);
 
   if (isLoading) {

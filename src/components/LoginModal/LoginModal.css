@@ -1,0 +1,59 @@
+.content-react-modal h2{
+    padding-bottom:  1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+form input{
+    padding: 0.5rem;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    margin-bottom: .8rem;
+}
+
+form button.login{
+    display: flex;
+    justify-content: center;
+
+    background-color: #007ca6;
+    color: #fff;
+    padding: .7rem;
+    font-size: 1.1rem;
+    border: 1px solid #007ca6;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: .2rem;
+
+    transition: all .3s ease-in-out;
+}
+
+form button.login:hover{
+    background-color: #005c7a;
+}
+
+.text-signup{
+    padding-top: 1.3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.signup{
+    background-color: transparent;
+    color: #007ca6;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    padding-left: .4rem;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+
+.signup:hover{
+    color: #003b4e;
+    text-decoration: underline;
+}

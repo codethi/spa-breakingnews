@@ -5,3 +5,44 @@
     align-items: center;
     width: auto;
 }
+
+.overley-react-modal{
+    background-color: #00000090;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-react-modal{
+    width: 100%;
+    max-width: 300px;
+    background-color: #ffffff;
+    padding: 3rem;
+    position: relative;
+    border-radius: 0.3rem;
+}
+
+.close-modal-button{
+    background-color: transparent;
+    color: #000000;
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+
+    transition: all .3s ease-in-out;
+}
+
+.close-modal-button:hover{
+    color: #007ca6;
+}
