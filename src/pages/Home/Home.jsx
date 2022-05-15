@@ -60,10 +60,12 @@ function Home() {
     }, 250);
   };
 
+  /*  function handleClickPost() {
+    console.log("oi");
+  }
+ */
   if (isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
@@ -78,9 +80,9 @@ function Home() {
         })}
       </section>
 
-     {/*  <section className="loading">{isLoading ? <Loading /> : ""}</section> */}
+      <section className="loading">{isLoading ? <Loading /> : ""}</section>
     </section>
   );
-}
+}''
 
 export default Home;

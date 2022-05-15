@@ -1,8 +1,12 @@
 import "./CardNews.css";
 
-function CardNews({ news }) {
+function CardNews({ news, idx }) {
+
+  function handleClickPost(){
+    console.log(idx)
+  }
   return (
-    <div className="card">
+    <div className="card" onClick={handleClickPost}>
       <h2>{news.title}</h2>
       <div className="card-image">
         <img src={news.banner} alt={news.title} />
