@@ -41,6 +41,7 @@ function Navbar() {
 
   function handleExit() {
     localStorage.removeItem("jwt");
+    navigate("/");
     setRefreshLogin(refreshLogin + 1);
   }
 
@@ -51,6 +52,17 @@ function Navbar() {
       setIsMenuOpen(true);
     }
   }
+
+  function handleProfile() {
+    setIsMenuOpen(false);
+    navigate("/profile");
+  }
+
+  window.addEventListener("click", function (e) {
+    if (e.target.parentElement.className != "space-user-logged") {
+      setIsMenuOpen(false);
+    }
+  });
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -95,7 +107,7 @@ function Navbar() {
               {isMenuOpen ? (
                 <div className="space-menu">
                   <ul>
-                    <li>
+                    <li onClick={handleProfile}>
                       <FiUser className="icon-menu" />
                       Perfil
                     </li>

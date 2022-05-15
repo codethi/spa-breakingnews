@@ -15,20 +15,20 @@ function Home() {
 
   useEffect(() => {
     async function getTopNews() {
-      setIsLoading(true);
       const resp = await fetch(`${baseURL}/posts/top`);
       const data = await resp.json();
-      setTopNews(data.post);
+
       setIsLoading(false);
+      setTopNews(data.post);
     }
 
     async function getAllNews() {
-      setIsLoading(true);
       const resp = await fetch(`${baseURL}/posts`);
       const data = await resp.json();
+
+      setIsLoading(false);
       setNews(data.results);
       setNextUrl(data.nextUrl);
-      setIsLoading(false);
     }
 
     getTopNews();
@@ -64,9 +64,6 @@ function Home() {
     console.log("oi");
   }
  */
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <section className="container">
@@ -83,6 +80,7 @@ function Home() {
       <section className="loading">{isLoading ? <Loading /> : ""}</section>
     </section>
   );
-}''
+}
+("");
 
 export default Home;
