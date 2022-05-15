@@ -76,3 +76,78 @@ button.btn-menu {
 button.btn-menu:hover {
     background-color: #005673;
 }
+
+.space-user-logged {
+    cursor: pointer;
+    position: relative;
+}
+
+.space-user-logged .user-logged-avatar {
+    height: 3rem;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+}
+
+.space-user-logged:hover .user-logged-avatar {
+    filter: brightness(20%);
+}
+
+.space-user-logged .icon-menu {
+    display: none;
+    color: #fff;
+    transition: all .5s ease-in-out;
+}
+
+.space-user-logged:hover .icon-menu {
+    display: block;
+    position: absolute;
+    font-size: 1.4rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 9999;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.space-menu{
+    position: absolute;
+    background-color: #F3F2EF;
+    color: #000;
+    border-radius: .3rem;
+    right: 1rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+}
+
+.space-menu ul li{
+    list-style: none;
+    padding: 1rem;
+    transition: all .3s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-menu ul li .icon-menu{
+    padding-right: .5rem;
+}
+
+.space-menu ul li:hover{
+    background-color: #ccc;
+    border-radius: .3rem;
+}
+
+.space-menu hr{
+    width: 60%;
+    margin: 0 auto;
+}

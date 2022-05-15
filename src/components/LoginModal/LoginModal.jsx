@@ -3,11 +3,13 @@ import "./LoginModal.css";
 import Modal from "react-modal";
 import { BiX } from "react-icons/bi";
 import { useState } from "react";
+import Loading from "../Loading/Loading";
 
 Modal.setAppElement("#root");
 
 function LoginModal({ isOpen, closeModal, onLogin }) {
   const [values, setValues] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const baseURL = import.meta.env.VITE_API_URL;
 
   const handleChangeValues = (value) => {
@@ -19,6 +21,7 @@ function LoginModal({ isOpen, closeModal, onLogin }) {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const response = await fetch(`${baseURL}/auth/login`, {
       method: "POST",
       headers: new Headers({
@@ -26,7 +29,6 @@ function LoginModal({ isOpen, closeModal, onLogin }) {
       }),
       body: JSON.stringify(values),
     });
-
     const result = await response.json();
 
     const jwt = result.token;
@@ -38,7 +40,13 @@ function LoginModal({ isOpen, closeModal, onLogin }) {
     } else {
       alert(result.message);
     }
+
+    setIsLoading(false);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Modal
@@ -72,8 +80,12 @@ function LoginModal({ isOpen, closeModal, onLogin }) {
         </button>
       </form>
 
-      <p className="text-signup">Não tem uma conta?<a href="https://www.google.com.br" className="signup">Cadastre-se</a></p>
-
+      <p className="text-signup">
+        Não tem uma conta?
+        <a href="https://www.google.com.br" className="signup">
+          Cadastre-se
+        </a>
+      </p>
     </Modal>
   );
 }

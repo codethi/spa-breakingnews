@@ -37,10 +37,10 @@ function SearchResult() {
       <div className="text-results">
         <span className="subtitle-result">
           {news.length != 0
-            ? `Achamos ${news.length} ${
+            ? `Encontramos ${news.length} ${
                 news.length > 1 ? "resultados" : "resultado"
               } para:`
-            : "Não achamos resultados para:"}
+            : "Não encontramos resultados para:"}
         </span>
         <h2>{title}</h2>
       </div>
