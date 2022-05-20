@@ -1,6 +1,6 @@
-import "./CardNews.css";
+import "./SmallCardNews.css";
 
-function CardNews({ news, idx }) {
+function SmallCardNews({ news, idx }) {
 
   function handleClickPost(){
     console.log(idx)
@@ -18,4 +18,4 @@ function CardNews({ news, idx }) {
   );
 }
 
-export default CardNews;
+export default SmallCardNews;

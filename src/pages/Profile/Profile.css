@@ -1,60 +1,90 @@
 .profile-container {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "aside main"
+    ;
+}
 
-    padding: 3rem 4rem;
+/* HEADER */
+
+.profile-header {
+    max-width: 100%;
+    padding: 10rem 0rem 0rem 10rem;
+    background-image: linear-gradient(to bottom, transparent 0%, #fff 60%), url(https://static.vecteezy.com/system/resources/thumbnails/000/103/376/small/crosshatch-style-background-pattern.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    grid-area: header;
+}
+
+.profile-header img {
+    border-radius: 50%;
+    width: 10%;
+}
+
+.profile-header h2 {
+    font-size: 2rem;
+    padding: 1rem 0;
+    font-family: Roboto, Arial;
+}
+
+.profile-header h3 {
+    margin-bottom: 1rem;
+}
+
+/* HEADER */
+
+
+
+/* ASIDE */
+
+.profile-aside {
+    grid-area: aside;
+    margin: 3rem 0 0 10rem;
+    width: 100%;
 }
 
 .profile-card {
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-    padding: 2rem;
-    border-radius: .3rem;
+    max-width: 100%;
+}
+
+.profile-card ul {
+    max-width: 100%;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
 }
 
-.profile-card img {
-    border-radius: 50%;
-    width: 100%;
-    
-}
-
-.profile-card h2{
-    font-size: 1.3rem;
-    padding-top: 1rem;
-}
-
-.profile-card span{
-    padding-top: 1rem;
-}
-
-.profile-card ul{
-    padding-top: 2rem;
-}
-
-.profile-card ul li{
+.profile-card ul li {
+    width: 50%;
     list-style: none;
     padding: 1rem;
+    text-align: center;
     transition: all .3s ease-in-out;
     cursor: pointer;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-bottom: 1px solid #ccc;
+    /* box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; */
 }
 
-.profile-card ul li .icon-profile{
-    padding-right: .5rem;
+.profile-card ul li:hover {
+    background-color: #dbdbdb;
+
 }
 
-.profile-card ul li:hover{
-    background-color: #ccc;
-    
+/* ASIDE */
+
+
+/* POSTS */
+
+.profile-posts {
+    grid-area: main;
+    width: 100%;
+    overflow: auto;
 }
 
-.profile-card hr{
-    margin: 0 auto;
-}
+/* POSTS */

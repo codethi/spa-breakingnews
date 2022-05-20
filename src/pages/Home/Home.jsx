@@ -1,7 +1,7 @@
 import "./Home.css";
 
 import { useEffect, useState } from "react";
-import CardNews from "../../components/CardNews/CardNews";
+import SmallCardNews from "../../components/SmallCardNews/SmallCardNews";
 import TopNews from "../../components/TopNews/TopNews";
 import Loading from "../../components/Loading/Loading";
 
@@ -73,7 +73,7 @@ function Home() {
 
       <section className="news">
         {news.map((item, idx) => {
-          return <CardNews news={item} key={idx} />;
+          return <SmallCardNews news={item} key={idx} />;
         })}
       </section>
 

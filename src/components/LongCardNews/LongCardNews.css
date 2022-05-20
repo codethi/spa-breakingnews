@@ -1,14 +1,14 @@
 .card-search {
     display: flex;
-    border-bottom: 1px solid #ccc;
     padding: 2rem;
-    transform: scale(.9);
+    transform: scale(.8);
     transition: all .3s ease-in-out;
     cursor: pointer;
+    background-color: #fff;
 }
 
 .card-search:hover{
-    transform: scale(1);
+    transform: scale(.9);
 }
 
 .card-search-body {
@@ -28,3 +28,7 @@
     color: #6d6d6d;
     font-size: .8rem;
 }
+
+.card-search-hr{
+    transform: scale(.8);
+} 

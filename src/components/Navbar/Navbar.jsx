@@ -73,6 +73,12 @@ function Navbar() {
             Authorization: `Bearer ${jwt}`,
           },
         });
+
+        if (response.status == 401) {
+          handleExit();
+          return alert("Token inválido, faça o login novamente.");
+        }
+
         const data = await response.json();
         setUserLogged(data);
       }

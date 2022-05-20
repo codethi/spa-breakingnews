@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CardSearchNews from "../../components/CardSearchNews/CardSearchNews";
+import LongCardNews from "../../components/LongCardNews/LongCardNews";
 
 import "./SearchResult.css";
 import notfound from "../../images/notfound.png";
@@ -47,7 +47,7 @@ function SearchResult() {
 
       <div className="search-news">
         {news.map((item, idx) => {
-          return <CardSearchNews news={item} key={idx} />;
+          return <LongCardNews news={item} key={idx} />;
         })}
       </div>
 

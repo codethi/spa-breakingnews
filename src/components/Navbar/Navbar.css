@@ -5,6 +5,10 @@ nav {
     width: 100%;
     border-bottom: 1px solid #ccc;
     padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    z-index: 9999;
 }
 
 .logo-image {
@@ -89,7 +93,7 @@ button.btn-menu:hover {
 }
 
 .space-user-logged:hover .user-logged-avatar {
-    filter: brightness(20%);
+    filter: brightness(50%);
 }
 
 .space-user-logged .icon-menu {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CardSearchNews from "../../components/CardSearchNews/CardSearchNews";
+import LongCardNews from "../../components/LongCardNews/LongCardNews";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,8 @@ function Profile() {
   const [userLogged, setUserLogged] = useState({});
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [refreshCreate, setRefreshCreate] = useState(0);
 
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
@@ -46,34 +48,50 @@ function Profile() {
     }
   }, []);
 
+  function handleOpenCreateModal() {
+    setIsCreateModalOpen(true);
+  }
+
+  function handleCloseCreateModal() {
+    setIsCreateModalOpen(false);
+  }
+
+  function onCreate() {
+    setRefreshCreate(refreshLogin + 1);
+  }
+
+  function returnHome() {
+    navigate("/");
+  }
+
   if (isLoading) {
     return <Loading />;
   }
   return (
-    <main className="profile-container">
+    <section className="profile-container">
+      <header className="profile-header">
+        <img src={userLogged.avatar} alt="Foto do usuário" />
+        <h2>{userLogged.name}</h2>
+        <h3>@{userLogged.username}</h3>
+      </header>
+
       <aside className="profile-aside">
         <div className="profile-card">
-          <img src={userLogged.avatar} alt="Foto do usuário" />
-          <h2>{userLogged.name}</h2>
-          <h5>@{userLogged.username}</h5>
-          <span>{userLogged.email}</span>
           <ul>
-            <hr />
-            <li> Criar nova notícia</li>
-            <hr />
-            <li>Sair</li>
-            <hr />
+            <li onClick={handleOpenCreateModal}> Criar notícia</li>
+            <li onClick={returnHome}>Voltar</li>
           </ul>
         </div>
       </aside>
-      <section className="profile-posts">
+
+      <main className="profile-posts">
         <div>
           {news.map((item, idx) => {
-            return <CardSearchNews news={item} key={idx} />;
+            return <LongCardNews news={item} key={idx} />;
           })}
         </div>
-      </section>
-    </main>
+      </main>
+    </section>
   );
 }
 
