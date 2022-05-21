@@ -7,7 +7,7 @@ nav {
     position: fixed;
     top: 0;
     background-color: #fff;
-    z-index: 9999;
+    z-index: 1;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 
@@ -61,8 +61,8 @@ div.controls {
 }
 
 button.btn-menu {
-    background-color: #007ca6;
-    border: solid 1px #007ca6;
+    background-color: #0bade3;
+    border: none;
     outline: none;
     font-size: 1rem;
     padding: .4rem;
@@ -78,7 +78,7 @@ button.btn-menu {
 }
 
 button.btn-menu:hover {
-    background-color: #005673;
+    background-color: #0a86af;
 }
 
 .space-user-logged {

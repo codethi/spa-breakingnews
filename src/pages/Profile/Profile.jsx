@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import SmallCardNews from "../../components/SmallCardNews/SmallCardNews";
+import LongCardNews from "../../components/LongCardNews/LongCardNews";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { FiPlus } from "react-icons/fi";
+import swal from "sweetalert";
 
 import "./Profile.css";
+import CreateNewsModal from "../../components/CreateNewsModal/CreateNewsModal";
 
 function Profile() {
   let navigate = useNavigate();
@@ -19,7 +20,12 @@ function Profile() {
 
   useEffect(() => {
     if (!jwt) {
-      alert("Faça o login para ver o perfil!");
+      swal({
+        title: "Erro",
+        text: "Faça o login antes de entrar no perfil!",
+        icon: "error",
+        timer: "7000",
+      });
       navigate("/");
     } else {
       async function getPostsUser() {
@@ -47,10 +53,25 @@ function Profile() {
       getPostsUser();
       getUser();
     }
-  }, []);
+  }, [refreshCreate]);
 
   function handleOpenCreateModal() {
     setIsCreateModalOpen(true);
+    /* swal({
+      title: "Erro",
+      text: "Erroooouuu",
+      icon: "error",
+      buttons: ["Não", "Sim"],
+    }).then((resp) => {
+      if (resp) {
+        swal({
+          title: "Boa",
+          text: "foi",
+          icon: "success",
+          timer: "2000",
+        });
+      }
+    }); */
   }
 
   function handleCloseCreateModal() {
@@ -58,7 +79,7 @@ function Profile() {
   }
 
   function onCreate() {
-    setRefreshCreate(refreshLogin + 1);
+    setRefreshCreate(refreshCreate + 1);
   }
 
   function returnHome() {
@@ -71,20 +92,13 @@ function Profile() {
 
   return (
     <section className="profile-container">
-      <header
-        className="profile-header"
-        /* style={{
-          backgroundImage: `linear-gradient(to bottom, transparent 100%, #fff 40%), url(${userLogged.background}})`,
-        }} */
-      >
+      <header className="profile-header">
+        <img
+          className="profile-background"
+          src={userLogged.background}
+          alt=""
+        />
         <div className="profile-user">
-          {
-            <img
-              className="profile-background"
-              src={userLogged.background}
-              alt=""
-            />
-          }
           <img
             className="profile-avatar"
             src={userLogged.avatar}
@@ -94,21 +108,23 @@ function Profile() {
           <h3>@{userLogged.username}</h3>
         </div>
         <div className="profile-actions">
-          <button
-            className="btn-create-news"
-            type="button"
-            onClick={handleOpenCreateModal}
-          >
-            <FiPlus /> Criar Noticia
+          <button type="button" onClick={handleOpenCreateModal}>
+            Publicar Notícia
           </button>
         </div>
       </header>
 
       <main className="profile-posts">
         {news.map((item, idx) => {
-          return <SmallCardNews news={item} key={idx} />;
+          return <LongCardNews news={item} key={idx} />;
         })}
       </main>
+
+      <CreateNewsModal
+        isOpen={isCreateModalOpen}
+        closeModal={handleCloseCreateModal}
+        onCreate={onCreate}
+      />
     </section>
   );
 }

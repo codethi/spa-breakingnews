@@ -1,14 +1,4 @@
-.content-react-modal h2{
-    padding-bottom:  1rem;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-}
-
-form input{
+form textarea{
     padding: 0.5rem;
     outline: none;
     border: 1px solid #ccc;
@@ -16,7 +6,7 @@ form input{
     margin-bottom: .8rem;
 }
 
-form button.register{
+.publish-news {
     display: flex;
     justify-content: center;
 
@@ -32,6 +22,6 @@ form button.register{
     transition: all .3s ease-in-out;
 }
 
-form button.register:hover{
+.publish-news:hover {
     background-color: #0a86af;
 }

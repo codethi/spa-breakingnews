@@ -1,7 +1,8 @@
-.topNews {    
-    width: 100%;
+.topNews {
+    max-width: 100%;
     margin: 0 auto;
     cursor: pointer;
+    padding: 2rem;
 }
 
 .card-top {
@@ -30,12 +31,14 @@
 
 .card-image-top {
     width: 100%;
-    
+    height: 100%;
     justify-self: center;
     align-self: center;
 }
 
-
 .card-image-top img {
-    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
 }

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../images/LogoBN.png";
 import { FiMenu, FiUser, FiLogOut } from "react-icons/fi";
 import LoginModal from "../LoginModal/LoginModal";
+import swal from "sweetalert";
 import "./Navbar.css";
 
 function Navbar() {
@@ -36,6 +37,11 @@ function Navbar() {
   }
 
   function onLogin() {
+    swal({
+      text: "Seja bem vindo!",
+      icon: "success",
+      timer: "5000",
+    });
     setRefreshLogin(refreshLogin + 1);
   }
 

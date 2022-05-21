@@ -20,11 +20,11 @@ form button.login{
     display: flex;
     justify-content: center;
 
-    background-color: #007ca6;
+    background-color: #0bade3;
     color: #fff;
     padding: .7rem;
     font-size: 1.1rem;
-    border: 1px solid #007ca6;
+    border: 1px solid #0bade3;
     cursor: pointer;
     font-weight: bold;
     border-radius: .2rem;
@@ -33,7 +33,7 @@ form button.login{
 }
 
 form button.login:hover{
-    background-color: #005c7a;
+    background-color: #0a86af;
 }
 
 .text-signup{
@@ -44,7 +44,7 @@ form button.login:hover{
 
 .signup{
     background-color: transparent;
-    color: #007ca6;
+    color: #0bade3;
     font-size: 1.1rem;
     cursor: pointer;
     font-weight: bold;
