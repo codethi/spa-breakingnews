@@ -1,28 +1,46 @@
 .profile-container {
     width: 100%;
-    display: grid;
-    grid-template-areas:
-        "header header"
-        "aside main"
-    ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 /* HEADER */
 
 .profile-header {
-    max-width: 100%;
-    padding: 10rem 0rem 0rem 10rem;
-    background-image: linear-gradient(to bottom, transparent 0%, #fff 60%), url(https://static.vecteezy.com/system/resources/thumbnails/000/103/376/small/crosshatch-style-background-pattern.jpg);
+    width: 60%;
+    margin-top: 6.5rem;
+    padding: 5rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    grid-area: header;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    border-radius: .3rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    background-color: #fff;
+    z-index: -2;
 }
 
-.profile-header img {
+.profile-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 55%;
+    z-index: -1;
+    border-radius: .3rem .3rem 0 0;
+}
+
+.profile-avatar {
     border-radius: 50%;
-    width: 10%;
+    width: 45%;
+    border: solid 5px #fff;
+    object-fit: cover;
+    object-position: center;
 }
 
 .profile-header h2 {
@@ -31,60 +49,26 @@
     font-family: Roboto, Arial;
 }
 
-.profile-header h3 {
-    margin-bottom: 1rem;
+.btn-create-news {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
 }
 
 /* HEADER */
 
-
-
-/* ASIDE */
-
-.profile-aside {
-    grid-area: aside;
-    margin: 3rem 0 0 10rem;
-    width: 100%;
-}
-
-.profile-card {
-    max-width: 100%;
-}
-
-.profile-card ul {
-    max-width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-}
-
-.profile-card ul li {
-    width: 50%;
-    list-style: none;
-    padding: 1rem;
-    text-align: center;
-    transition: all .3s ease-in-out;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc;
-    /* box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; */
-}
-
-.profile-card ul li:hover {
-    background-color: #dbdbdb;
-
-}
-
-/* ASIDE */
-
-
 /* POSTS */
 
 .profile-posts {
-    grid-area: main;
-    width: 100%;
-    overflow: auto;
+    margin: 1rem 0;
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 3.5rem;
+    width: 60%;
+    border-radius: .3rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    background-color: #fff;
 }
 
 /* POSTS */

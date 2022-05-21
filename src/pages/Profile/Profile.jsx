@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import LongCardNews from "../../components/LongCardNews/LongCardNews";
+import SmallCardNews from "../../components/SmallCardNews/SmallCardNews";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { FiPlus } from "react-icons/fi";
 
 import "./Profile.css";
 
@@ -67,29 +68,46 @@ function Profile() {
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <section className="profile-container">
-      <header className="profile-header">
-        <img src={userLogged.avatar} alt="Foto do usuário" />
-        <h2>{userLogged.name}</h2>
-        <h3>@{userLogged.username}</h3>
+      <header
+        className="profile-header"
+        /* style={{
+          backgroundImage: `linear-gradient(to bottom, transparent 100%, #fff 40%), url(${userLogged.background}})`,
+        }} */
+      >
+        <div className="profile-user">
+          {
+            <img
+              className="profile-background"
+              src={userLogged.background}
+              alt=""
+            />
+          }
+          <img
+            className="profile-avatar"
+            src={userLogged.avatar}
+            alt="Foto do usuário"
+          />
+          <h2>{userLogged.name}</h2>
+          <h3>@{userLogged.username}</h3>
+        </div>
+        <div className="profile-actions">
+          <button
+            className="btn-create-news"
+            type="button"
+            onClick={handleOpenCreateModal}
+          >
+            <FiPlus /> Criar Noticia
+          </button>
+        </div>
       </header>
 
-      <aside className="profile-aside">
-        <div className="profile-card">
-          <ul>
-            <li onClick={handleOpenCreateModal}> Criar notícia</li>
-            <li onClick={returnHome}>Voltar</li>
-          </ul>
-        </div>
-      </aside>
-
       <main className="profile-posts">
-        <div>
-          {news.map((item, idx) => {
-            return <LongCardNews news={item} key={idx} />;
-          })}
-        </div>
+        {news.map((item, idx) => {
+          return <SmallCardNews news={item} key={idx} />;
+        })}
       </main>
     </section>
   );

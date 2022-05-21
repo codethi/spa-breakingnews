@@ -1,23 +1,28 @@
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-gap: 2rem;
-    grid-template-areas: 
-    "topNews topNews topNews topNews"
-    "news news news news"
-    ;
-    padding-top: 10rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .top-news{
-    grid-area: topNews;
+    margin-top: 6.5rem;
+    padding: 5rem;
+    width: 70%;
+    background-color: #fff;
+    border-radius: .3rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .news {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 3.5rem;
-    grid-area: news;
-    padding: 2rem 7rem 5rem 7rem; 
+
+    padding: 5rem;
+    width: 70%;
+    border-radius: .3rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    background-color: #fff;
+    margin: 1rem 0;
 }

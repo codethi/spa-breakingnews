@@ -1,8 +1,6 @@
 .topNews {    
-    padding: 3rem 0;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
 

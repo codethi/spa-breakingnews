@@ -3,12 +3,12 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid #ccc;
     padding: 1rem 0;
     position: fixed;
     top: 0;
     background-color: #fff;
     z-index: 9999;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 
 .logo-image {
@@ -37,7 +37,7 @@ div.controls {
     right: 0;
     z-index: 10;
     border: none;
-    background-color: #F3F2EF;
+    background-color: #f5f5f5;
     color: #757575;
     border-radius: .3rem;
     padding: .5rem;
@@ -47,7 +47,7 @@ div.controls {
     outline: none;
     font-size: 1rem;
     padding: .6rem;
-    background-color: #F3F2EF;
+    background-color: #f5f5f5;
     border: none;
     width: 100%;
     border-radius: .3rem;
@@ -119,39 +119,41 @@ button.btn-menu:hover {
     justify-content: center;
 }
 
-.space-menu{
+.space-menu {
     position: absolute;
-    background-color: #F3F2EF;
+    background-color: #ffffff;
     color: #000;
-    border-radius: .3rem;
+    border-radius: .2rem;
     right: 1rem;
     cursor: pointer;
     transition: all .3s ease-in-out;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 
     display: flex;
     justify-content: center;
 }
 
-.space-menu ul li{
+.space-menu ul li {
     list-style: none;
     padding: 1rem;
     transition: all .3s ease-in-out;
-
+    transform: scale(0.9);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.space-menu ul li .icon-menu{
+.space-menu ul li .icon-menu {
     padding-right: .5rem;
 }
 
-.space-menu ul li:hover{
-    background-color: #ccc;
-    border-radius: .3rem;
+.space-menu ul li:hover {
+    background-color: #f2f2f2;
+    border-radius: .2rem;
+    transform: scale(1);
 }
 
-.space-menu hr{
-    width: 60%;
+.space-menu hr {
+    width: 90%;
     margin: 0 auto;
 }
