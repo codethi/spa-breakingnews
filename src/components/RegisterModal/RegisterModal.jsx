@@ -82,6 +82,13 @@ function RegisterModal({ isOpen, closeModal, onLogin }) {
           onChange={handleChangeValues}
         />
         <input
+          type="text"
+          name="background"
+          id="background"
+          placeholder="Link da imagem de background do perfil"
+          onChange={handleChangeValues}
+        />
+        <input
           type="email"
           name="email"
           id="email"
