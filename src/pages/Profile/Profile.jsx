@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import LongCardNews from "../../components/LongCardNews/LongCardNews";
+import CardNews from "../../components/CardNews/CardNews";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -142,7 +142,7 @@ function Profile() {
 
       <main className="profile-posts">
         {news.map((item, idx) => {
-          return <LongCardNews news={item} key={idx} />;
+          return <CardNews news={item} key={idx} />;
         })}
       </main>
 

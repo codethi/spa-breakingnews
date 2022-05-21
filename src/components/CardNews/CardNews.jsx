@@ -1,6 +1,6 @@
-import "./LongCardNews.css";
+import "./CardNews.css";
 
-function LongCardNews({ news }) {
+function CardNews({ news }) {
   return (
     <div className="card-search">
       <div className="card-search-body">
@@ -16,4 +16,4 @@ function LongCardNews({ news }) {
   );
 }
 
-export default LongCardNews;
+export default CardNews;
