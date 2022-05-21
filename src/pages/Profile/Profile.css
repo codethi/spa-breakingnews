@@ -34,7 +34,7 @@
 
 .profile-user {
     padding: 2rem;
-    
+
 }
 
 .profile-avatar {
@@ -55,20 +55,42 @@
     padding: 2rem;
 }
 
-.profile-actions button {
-    background-color: #0bade3;
-    border-radius: .3rem;
-    color: #fff;
-    padding: 1rem;
+.profile-icon-add {
+    background-color: transparent;
+    border-radius: 50%;
+    color: #0bade3;
     outline: none;
     border: none;
     cursor: pointer !important;
+    font-family: Roboto, Arial;
+    font-weight: bold;
+    font-size: 2.5rem;
+    transform: scale(.9);
 
     transition: all .3s ease-in-out;
 }
 
-.profile-actions button:hover {
-    background-color: #0a86af;
+.profile-icon-add:hover {
+    color: #0a86af;
+    transform: scale(1);
+}
+
+.profile-icon-edit {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #0bade3;
+    background-color: #fff;
+    padding: .5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.profile-icon-edit:hover {
+    color: #fff;
+    background-color: #0bade3;
 }
 
 

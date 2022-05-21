@@ -3,6 +3,7 @@ import CardNews from "../../components/CardNews/CardNews";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { BiPlusCircle, BiEdit } from "react-icons/bi";
 
 import "./Profile.css";
 import Modals from "../../components/Modals/Modals";
@@ -99,7 +100,6 @@ function Profile() {
     }); */
   }
 
-
   function handleCloseCreateModal() {
     setIsCreateModalOpen(false);
   }
@@ -119,6 +119,7 @@ function Profile() {
   return (
     <section className="profile-container">
       <header className="profile-header">
+        <BiEdit className="profile-icon-edit" />
         <img
           className="profile-background"
           src={userLogged.background}
@@ -134,9 +135,7 @@ function Profile() {
           <h3>@{userLogged.username}</h3>
         </div>
         <div className="profile-actions">
-          <button type="button" onClick={handleOpenCreateModal}>
-            Publicar Notícia
-          </button>
+          <BiPlusCircle className="profile-icon-add" onClick={handleOpenCreateModal} />
         </div>
       </header>
 
