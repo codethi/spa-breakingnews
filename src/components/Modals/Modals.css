@@ -1,14 +1,14 @@
-.content-react-modal h2{
-    padding-bottom:  1rem;
-}
-
 form {
     display: flex;
     flex-direction: column;
     margin: 0;
 }
 
-form input{
+.modal-title {
+    padding-bottom: 1rem;
+}
+
+form input {
     padding: 0.5rem;
     outline: none;
     border: 1px solid #ccc;
@@ -16,7 +16,15 @@ form input{
     margin-bottom: .8rem;
 }
 
-form button.login{
+form textarea {
+    padding: 0.5rem;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    margin-bottom: .8rem;
+}
+
+form button {
     display: flex;
     justify-content: center;
 
@@ -32,17 +40,17 @@ form button.login{
     transition: all .3s ease-in-out;
 }
 
-form button.login:hover{
+form button:hover {
     background-color: #0a86af;
 }
 
-.text-signup{
+.text-signup {
     padding-top: 1.3rem;
     display: flex;
     justify-content: center;
 }
 
-.signup{
+.signup {
     background-color: transparent;
     color: #0bade3;
     font-size: 1.1rem;
@@ -53,7 +61,7 @@ form button.login:hover{
     text-decoration: none;
 }
 
-.signup:hover{
+.signup:hover {
     color: #003b4e;
     text-decoration: underline;
 }

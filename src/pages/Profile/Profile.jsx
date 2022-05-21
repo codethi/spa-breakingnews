@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
 import "./Profile.css";
-import CreateNewsModal from "../../components/CreateNewsModal/CreateNewsModal";
+import Modals from "../../components/Modals/Modals";
 
 function Profile() {
   let navigate = useNavigate();
@@ -14,6 +14,7 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [refreshCreate, setRefreshCreate] = useState(0);
+  const [fieldArray, setFieldArray] = useState([]);
 
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
@@ -53,6 +54,30 @@ function Profile() {
       getPostsUser();
       getUser();
     }
+    setFieldArray([
+      {
+        field: "input",
+        type: "title",
+        name: "title",
+        id: "title",
+        placeholder: "Titulo",
+      },
+      {
+        field: "input",
+        type: "text",
+        name: "banner",
+        id: "banner",
+        placeholder: "Banner",
+      },
+      {
+        field: "textarea",
+        name: "text",
+        id: "text",
+        cols: "30",
+        rows: "10",
+        placeholder: "Texto da notícia",
+      },
+    ]);
   }, [refreshCreate]);
 
   function handleOpenCreateModal() {
@@ -73,6 +98,7 @@ function Profile() {
       }
     }); */
   }
+
 
   function handleCloseCreateModal() {
     setIsCreateModalOpen(false);
@@ -120,10 +146,14 @@ function Profile() {
         })}
       </main>
 
-      <CreateNewsModal
+      <Modals
         isOpen={isCreateModalOpen}
         closeModal={handleCloseCreateModal}
-        onCreate={onCreate}
+        onChanges={onCreate}
+        type="createNews"
+        title="Publicar Notícia"
+        btnName="Publicar"
+        fieldList={fieldArray}
       />
     </section>
   );

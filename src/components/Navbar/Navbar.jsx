@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "../../images/LogoBN.png";
 import { FiMenu, FiUser, FiLogOut } from "react-icons/fi";
-import LoginModal from "../LoginModal/LoginModal";
+import Modals from "../Modals/Modals";
 import swal from "sweetalert";
 import "./Navbar.css";
 
@@ -13,8 +13,26 @@ function Navbar() {
   const [refreshLogin, setRefreshLogin] = useState(0);
   const [userLogged, setUserLogged] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
+
+  const fieldArray = [
+    {
+      field: "input",
+      type: "email",
+      name: "email",
+      id: "email",
+      placeholder: "Email",
+    },
+    {
+      field: "input",
+      type: "password",
+      name: "password",
+      id: "password",
+      placeholder: "Senha",
+    },
+  ];
 
   function search(e) {
     if (e.target.value) {
@@ -65,7 +83,7 @@ function Navbar() {
   }
 
   window.addEventListener("click", function (e) {
-    if (e.target.parentElement.className != "space-user-logged") {
+    if (!e.target.parentElement?.classList.contains("space-user-logged")) {
       setIsMenuOpen(false);
     }
   });
@@ -82,7 +100,12 @@ function Navbar() {
 
         if (response.status == 401) {
           handleExit();
-          return alert("Token inválido, faça o login novamente.");
+          return swal({
+            title: "Erro",
+            text: `${response.message}`,
+            icon: "error",
+            timer: "7000",
+          });
         }
 
         const data = await response.json();
@@ -146,10 +169,14 @@ function Navbar() {
         </div>
       </nav>
 
-      <LoginModal
+      <Modals
         isOpen={isLoginModalOpen}
         closeModal={handleCloseLoginModal}
-        onLogin={onLogin}
+        onChanges={onLogin}
+        type="login"
+        title="Entrar"
+        btnName="Entrar"
+        fieldList={fieldArray}
       />
     </>
   );
