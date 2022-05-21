@@ -2,8 +2,7 @@ import "./LongCardNews.css";
 
 function LongCardNews({ news }) {
   return (
-    <>
-     <div className="card-search">
+    <div className="card-search">
       <div className="card-search-body">
         <h2>{news.title}</h2>
         <p className="text-search">{news.text}</p>
@@ -14,9 +13,6 @@ function LongCardNews({ news }) {
         <img src={news.banner} alt={news.title} />
       </div>
     </div>
-    <hr className="card-search-hr" />
-    </>
-   
   );
 }
 

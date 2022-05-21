@@ -1,14 +1,17 @@
 .card-search {
     display: flex;
     padding: 2rem;
-    transform: scale(.8);
+    margin: .5rem 0;
+    max-width: 100%;
     transition: all .3s ease-in-out;
     cursor: pointer;
     background-color: #fff;
+    border-radius: .3rem;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .card-search:hover{
-    transform: scale(.9);
+    transform: scale(.98);
 }
 
 .card-search-body {
@@ -28,7 +31,3 @@
     color: #6d6d6d;
     font-size: .8rem;
 }
-
-.card-search-hr{
-    transform: scale(.8);
-} 
