@@ -15,10 +15,34 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [refreshCreate, setRefreshCreate] = useState(0);
-  const [fieldArray, setFieldArray] = useState([]);
 
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
+
+  const fieldList = [
+    {
+      field: "input",
+      type: "title",
+      name: "title",
+      id: "title",
+      placeholder: "Titulo",
+    },
+    {
+      field: "input",
+      type: "text",
+      name: "banner",
+      id: "banner",
+      placeholder: "Banner",
+    },
+    {
+      field: "textarea",
+      name: "text",
+      id: "text",
+      cols: "30",
+      rows: "10",
+      placeholder: "Texto da notícia",
+    },
+  ];
 
   useEffect(() => {
     if (!jwt) {
@@ -55,30 +79,6 @@ function Profile() {
       getPostsUser();
       getUser();
     }
-    setFieldArray([
-      {
-        field: "input",
-        type: "title",
-        name: "title",
-        id: "title",
-        placeholder: "Titulo",
-      },
-      {
-        field: "input",
-        type: "text",
-        name: "banner",
-        id: "banner",
-        placeholder: "Banner",
-      },
-      {
-        field: "textarea",
-        name: "text",
-        id: "text",
-        cols: "30",
-        rows: "10",
-        placeholder: "Texto da notícia",
-      },
-    ]);
   }, [refreshCreate]);
 
   function handleOpenCreateModal() {
@@ -135,7 +135,10 @@ function Profile() {
           <h3>@{userLogged.username}</h3>
         </div>
         <div className="profile-actions">
-          <BiPlusCircle className="profile-icon-add" onClick={handleOpenCreateModal} />
+          <BiPlusCircle
+            className="profile-icon-add"
+            onClick={handleOpenCreateModal}
+          />
         </div>
       </header>
 
@@ -152,7 +155,7 @@ function Profile() {
         type="createNews"
         title="Publicar Notícia"
         btnName="Publicar"
-        fieldList={fieldArray}
+        fieldList={fieldList}
       />
     </section>
   );

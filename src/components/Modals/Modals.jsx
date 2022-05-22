@@ -19,9 +19,7 @@ function Modals({
 }) {
   const [values, setValues] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [inputArray, setInputArray] = useState([]);
   const [formDatails, setFormDetails] = useState({});
-  const [refreshModal, setRefreshModal] = useState(0);
 
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
@@ -38,61 +36,58 @@ function Modals({
       type: "register",
       title: "Cadastro",
       btnName: "Cadastrar",
+      fieldList: [
+        {
+          field: "input",
+          type: "text",
+          name: "name",
+          id: "name",
+          placeholder: "Nome completo",
+        },
+        {
+          field: "input",
+          type: "text",
+          name: "username",
+          id: "username",
+          placeholder: "Nome de usuário",
+        },
+        {
+          field: "input",
+          type: "text",
+          name: "avatar",
+          id: "avatar",
+          placeholder: "Link da foto de perfil",
+        },
+        {
+          field: "input",
+          type: "text",
+          name: "background",
+          id: "background",
+          placeholder: "Link da imagem de background do perfil",
+        },
+        {
+          field: "input",
+          type: "email",
+          name: "email",
+          id: "email",
+          placeholder: "Email",
+        },
+        {
+          field: "input",
+          type: "password",
+          name: "password",
+          id: "password",
+          placeholder: "Senha",
+        },
+      ],
     });
-    fieldList = [
-      {
-        field: "input",
-        type: "text",
-        name: "name",
-        id: "name",
-        placeholder: "Nome completo",
-      },
-      {
-        field: "input",
-        type: "text",
-        name: "username",
-        id: "username",
-        placeholder: "Nome de usuário",
-      },
-      {
-        field: "input",
-        type: "text",
-        name: "avatar",
-        id: "avatar",
-        placeholder: "Link da foto de perfil",
-      },
-      {
-        field: "input",
-        type: "text",
-        name: "background",
-        id: "background",
-        placeholder: "Link da imagem de background do perfil",
-      },
-      {
-        field: "input",
-        type: "email",
-        name: "email",
-        id: "email",
-        placeholder: "Email",
-      },
-      {
-        field: "input",
-        type: "password",
-        name: "password",
-        id: "password",
-        placeholder: "Senha",
-      },
-    ];
-    setInputArray(fieldList);
   }
 
   useEffect(() => {
-    setInputArray(fieldList);
-    setFormDetails({ title, type, btnName });
+    setFormDetails({ title, type, btnName, fieldList });
   }, [isOpen]);
 
-  const login = async (event) => {
-    event.preventDefault();
+  const login = async () => {
     setIsLoading(true);
     const response = await fetch(`${baseURL}/auth/login`, {
       method: "POST",
@@ -121,8 +116,7 @@ function Modals({
     setIsLoading(false);
   };
 
-  const register = async (event) => {
-    event.preventDefault();
+  const register = async () => {
     setIsLoading(true);
     const response = await fetch(`${baseURL}/user/create`, {
       method: "POST",
@@ -146,8 +140,7 @@ function Modals({
     setIsLoading(false);
   };
 
-  const createNews = async (event) => {
-    event.preventDefault();
+  const createNews = async () => {
     setIsLoading(true);
     const response = await fetch(`${baseURL}/posts/create`, {
       method: "POST",
@@ -179,6 +172,18 @@ function Modals({
     setIsLoading(false);
   };
 
+  function submitFunction(event) {
+    event.preventDefault();
+    switch (type) {
+      case "login":
+        return login();
+      case "register":
+        return register();
+      case "createNews":
+        return createNews();
+    }
+  }
+
   if (isLoading) {
     return <Loading />;
   }
@@ -200,18 +205,8 @@ function Modals({
         </button>
         <h2 className="modal-title">{formDatails.title}</h2>
 
-        <form
-          onSubmit={
-            formDatails.type == "login"
-              ? login
-              : formDatails.type == "register"
-              ? register
-              : formDatails.type == "createNews"
-              ? createNews
-              : ""
-          }
-        >
-          {inputArray.map((item, idx) => {
+        <form onSubmit={submitFunction}>
+          {formDatails.fieldList?.map((item, idx) => {
             return item.field == "input" ? (
               <input
                 key={idx}

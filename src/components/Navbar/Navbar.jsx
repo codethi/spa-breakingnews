@@ -17,7 +17,7 @@ function Navbar() {
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
 
-  const fieldArray = [
+  const fieldList = [
     {
       field: "input",
       type: "email",
@@ -102,7 +102,7 @@ function Navbar() {
           handleExit();
           return swal({
             title: "Erro",
-            text: `${response.message}`,
+            text: `Token inválido, faça o login novamente!`,
             icon: "error",
             timer: "7000",
           });
@@ -176,7 +176,7 @@ function Navbar() {
         type="login"
         title="Entrar"
         btnName="Entrar"
-        fieldList={fieldArray}
+        fieldList={fieldList}
       />
     </>
   );
