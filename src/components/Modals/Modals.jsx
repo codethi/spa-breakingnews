@@ -16,18 +16,19 @@ function Modals({
   title,
   btnName,
   fieldList,
+  id
 }) {
   const [values, setValues] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [formDatails, setFormDetails] = useState({});
+  const [formDetails, setFormDetails] = useState({});
 
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
 
-  const handleChangeValues = (value) => {
+  const handleChangeValues = (event) => {
     setValues((prevValue) => ({
       ...prevValue,
-      [value.target.name]: value.target.value,
+      [event.target.name]: event.target.value,
     }));
   };
 
@@ -43,6 +44,7 @@ function Modals({
           name: "name",
           id: "name",
           placeholder: "Nome completo",
+          value: null,
         },
         {
           field: "input",
@@ -50,6 +52,7 @@ function Modals({
           name: "username",
           id: "username",
           placeholder: "Nome de usuário",
+          value: null,
         },
         {
           field: "input",
@@ -57,6 +60,7 @@ function Modals({
           name: "avatar",
           id: "avatar",
           placeholder: "Link da foto de perfil",
+          value: null,
         },
         {
           field: "input",
@@ -64,6 +68,7 @@ function Modals({
           name: "background",
           id: "background",
           placeholder: "Link da imagem de background do perfil",
+          value: null,
         },
         {
           field: "input",
@@ -71,6 +76,7 @@ function Modals({
           name: "email",
           id: "email",
           placeholder: "Email",
+          value: null,
         },
         {
           field: "input",
@@ -78,13 +84,14 @@ function Modals({
           name: "password",
           id: "password",
           placeholder: "Senha",
+          value: null,
         },
       ],
     });
   }
 
   useEffect(() => {
-    setFormDetails({ title, type, btnName, fieldList });
+    setFormDetails({ id, title, type, btnName, fieldList });
   }, [isOpen]);
 
   const login = async () => {
@@ -172,6 +179,38 @@ function Modals({
     setIsLoading(false);
   };
 
+  const editUser = async () => {
+    setIsLoading(true);
+    const response = await fetch(`${baseURL}/user/update/${formDetails.id}`, {
+      method: "PATCH",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      }),
+      body: JSON.stringify(values),
+    });
+    const result = await response.json();
+
+    if (response.status === 500 || response.status === 400) {
+      swal({
+        title: "Erro",
+        text: `${result.message}`,
+        icon: "error",
+        timer: "7000",
+      });
+    } else {
+      swal({
+        text: `${result.message}`,
+        icon: "success",
+        timer: "7000",
+      });
+      onChanges(response);
+      closeModal();
+    }
+
+    setIsLoading(false);
+  };
+
   function submitFunction(event) {
     event.preventDefault();
     switch (type) {
@@ -181,6 +220,8 @@ function Modals({
         return register();
       case "createNews":
         return createNews();
+      case "editUser":
+        return editUser();
     }
   }
 
@@ -203,10 +244,10 @@ function Modals({
         >
           <BiX />
         </button>
-        <h2 className="modal-title">{formDatails.title}</h2>
+        <h2 className="modal-title">{formDetails.title}</h2>
 
         <form onSubmit={submitFunction}>
-          {formDatails.fieldList?.map((item, idx) => {
+          {formDetails.fieldList?.map((item, idx) => {
             return item.field == "input" ? (
               <input
                 key={idx}
@@ -214,6 +255,7 @@ function Modals({
                 name={item.name}
                 id={item.id}
                 placeholder={item.placeholder}
+                defaultValue={item.value}
                 onChange={handleChangeValues}
               />
             ) : (
@@ -225,15 +267,16 @@ function Modals({
                 cols={item.cols}
                 rows={item.rows}
                 placeholder={item.placeholder}
+                defaultValue={item.value}
                 onChange={handleChangeValues}
               ></textarea>
             );
           })}
 
-          <button type="submit">{formDatails.btnName}</button>
+          <button type="submit">{formDetails.btnName}</button>
         </form>
 
-        {formDatails.title == "Entrar" ? (
+        {formDetails.title == "Entrar" ? (
           <p className="text-signup">
             Não tem uma conta?
             <a className="signup" onClick={handleRegister}>

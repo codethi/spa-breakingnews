@@ -39,7 +39,7 @@
 
 .profile-avatar {
     border-radius: 50%;
-    width: 45%;
+    width: 13rem;
     border: solid 5px #fff;
     object-fit: cover;
     object-position: center;

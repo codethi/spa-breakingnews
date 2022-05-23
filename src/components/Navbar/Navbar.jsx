@@ -24,6 +24,7 @@ function Navbar() {
       name: "email",
       id: "email",
       placeholder: "Email",
+      value: null
     },
     {
       field: "input",
@@ -31,6 +32,7 @@ function Navbar() {
       name: "password",
       id: "password",
       placeholder: "Senha",
+      value: null
     },
   ];
 
