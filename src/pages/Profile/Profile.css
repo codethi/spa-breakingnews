@@ -80,7 +80,7 @@
     top: 1rem;
     right: 1rem;
     color: #0bade3;
-    background-color: #fff;
+    background-color: #ffffff;
     padding: .5rem;
     border-radius: 50%;
     font-size: 1.5rem;
@@ -97,4 +97,22 @@
 .profile-posts {
     margin: 1rem 0;
     width: 80%;
+}
+
+.profile-icon-backhome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #0bade3;
+    padding: .3rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    background-color: #fff;
+    border-radius: .2rem 0 1rem 0;
+}
+
+.profile-icon-backhome:hover {
+    color: #fff;
+    background-color: #0bade3;
 }

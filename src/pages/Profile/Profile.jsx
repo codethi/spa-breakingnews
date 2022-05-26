@@ -4,6 +4,7 @@ import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { BiPlusCircle, BiEdit } from "react-icons/bi";
+import { IoIosArrowDropleft } from "react-icons/io";
 
 import "./Profile.css";
 import Modals from "../../components/Modals/Modals";
@@ -172,6 +173,10 @@ function Profile() {
   return (
     <section className="profile-container">
       <header className="profile-header">
+        <IoIosArrowDropleft
+          className="profile-icon-backhome"
+          onClick={returnHome}
+        />
         <BiEdit
           className="profile-icon-edit"
           onClick={handleOpenEditUserModal}

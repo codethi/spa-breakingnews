@@ -90,6 +90,7 @@ button.btn-menu:hover {
     height: 3rem;
     border-radius: 50%;
     transition: all .3s ease-in-out;
+    border: solid 2px #0bade3;
 }
 
 .space-user-logged:hover .user-logged-avatar {

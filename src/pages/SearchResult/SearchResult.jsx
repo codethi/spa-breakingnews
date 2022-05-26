@@ -1,17 +1,24 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardNews from "../../components/CardNews/CardNews";
+import { useNavigate } from "react-router-dom";
 
 import "./SearchResult.css";
 import notfound from "../../images/notfound.png";
 import Loading from "../../components/Loading/Loading";
+import { IoIosArrowDropleft } from "react-icons/io";
 
 function SearchResult() {
   const { title } = useParams();
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  let navigate = useNavigate();
 
   const baseURL = import.meta.env.VITE_API_URL;
+
+  function returnHome() {
+    navigate("/");
+  }
 
   useEffect(() => {
     async function searchNews() {
@@ -35,6 +42,10 @@ function SearchResult() {
   return (
     <section className="container-results">
       <div className="text-results">
+        <IoIosArrowDropleft
+          className="profile-icon-back"
+          onClick={returnHome}
+        />
         <span className="subtitle-result">
           {news.length != 0
             ? `Encontramos ${news.length} ${
