@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
+import NewsDetails from "./pages/NewsDetails/NewsDetails";
 import Profile from "./pages/Profile/Profile";
 import SearchResult from "./pages/SearchResult/SearchResult";
 
@@ -12,6 +13,7 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/search/:title" element={<SearchResult />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/news-details/:id" element={<NewsDetails />} />
       </Routes>
       {/* <Footer /> */}
     </Router>

@@ -68,7 +68,7 @@ function Home() {
   return (
     <section className="container">
       <header className="top-news">
-        <TopNews post={topNews} />
+        <TopNews news={topNews} />
       </header>
 
       <section className="news">
