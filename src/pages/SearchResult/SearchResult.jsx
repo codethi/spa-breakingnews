@@ -16,7 +16,10 @@ function SearchResult() {
 
   const baseURL = import.meta.env.VITE_API_URL;
 
+  const emptyInput = () => (document.querySelector(".search-input").value = "");
+
   function returnHome() {
+    emptyInput();
     navigate("/");
   }
 
@@ -58,7 +61,17 @@ function SearchResult() {
 
       <div className="search-news">
         {news.map((item, idx) => {
-          return <CardNews news={item} key={idx} />;
+          return (
+            <CardNews
+              news={item}
+              key={idx}
+              classCard={"card"}
+              classCardBody={"card-body"}
+              classCardImage={"card-image"}
+              countComments={item.comments?.length}
+              countLikes={item.likes?.length}
+            />
+          );
         })}
       </div>
 

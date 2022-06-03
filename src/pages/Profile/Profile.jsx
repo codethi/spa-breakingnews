@@ -205,7 +205,17 @@ function Profile() {
 
       <main className="profile-posts">
         {news.map((item, idx) => {
-          return <CardNews news={item} key={idx} />;
+          return (
+            <CardNews
+              news={item}
+              key={idx}
+              classCard={"card"}
+              classCardBody={"card-body"}
+              classCardImage={"card-image"}
+              countComments={item.comments?.length}
+              countLikes={item.likes?.length}
+            />
+          );
         })}
       </main>
 

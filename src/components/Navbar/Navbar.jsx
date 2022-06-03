@@ -13,7 +13,7 @@ function Navbar() {
   const [refreshLogin, setRefreshLogin] = useState(0);
   const [userLogged, setUserLogged] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
 
@@ -24,7 +24,7 @@ function Navbar() {
       name: "email",
       id: "email",
       placeholder: "Email",
-      value: null
+      value: null,
     },
     {
       field: "input",
@@ -32,9 +32,11 @@ function Navbar() {
       name: "password",
       id: "password",
       placeholder: "Senha",
-      value: null
+      value: null,
     },
   ];
+
+  const emptyInput = () => (document.querySelector(".search-input").value = "");
 
   function search(e) {
     if (e.target.value) {
@@ -45,6 +47,7 @@ function Navbar() {
   }
 
   function goHome() {
+    emptyInput();
     navigate("/");
   }
 
@@ -80,6 +83,7 @@ function Navbar() {
   }
 
   function handleProfile() {
+    emptyInput();
     setIsMenuOpen(false);
     navigate("/profile");
   }

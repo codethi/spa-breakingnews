@@ -10,8 +10,10 @@ function Home() {
   const [news, setNews] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [userLogged, setUserLogged] = useState({});
 
   const baseURL = import.meta.env.VITE_API_URL;
+  const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
     async function getTopNews() {
@@ -60,20 +62,34 @@ function Home() {
     }, 250);
   };
 
-  /*  function handleClickPost() {
-    console.log("oi");
-  }
- */
-
   return (
     <section className="container">
       <header className="top-news">
-        <TopNews news={topNews} />
+        <CardNews
+          news={topNews}
+          userLogged={userLogged}
+          classCard={"card-top"}
+          classCardBody={"card-body-top"}
+          classCardImage={"card-image-top"}
+          countComments={topNews.comments?.length}
+          countLikes={topNews.likes?.length}
+        />
       </header>
 
       <section className="news">
         {news.map((item, idx) => {
-          return <CardNews news={item} key={idx} />;
+          return (
+            <CardNews
+              news={item}
+              key={idx}
+              userLogged={userLogged}
+              classCard={"card"}
+              classCardBody={"card-body"}
+              classCardImage={"card-image"}
+              countComments={item.comments?.length}
+              countLikes={item.likes?.length}
+            />
+          );
         })}
       </section>
 
