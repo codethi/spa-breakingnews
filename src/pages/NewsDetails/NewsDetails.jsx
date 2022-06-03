@@ -19,6 +19,12 @@ function NewsDetails() {
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
 
+  function handleExit() {
+    localStorage.removeItem("jwt");
+    navigate("/");
+    setRefreshLogin(refreshLogin + 1);
+  }
+
   async function findNewsById() {
     const response = await fetch(`${baseURL}/posts/byIdPost/${id}`, {
       method: "GET",

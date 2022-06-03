@@ -2,7 +2,6 @@ import "./Home.css";
 
 import { useEffect, useState } from "react";
 import CardNews from "../../components/CardNews/CardNews";
-import TopNews from "../../components/TopNews/TopNews";
 import Loading from "../../components/Loading/Loading";
 
 function Home() {
