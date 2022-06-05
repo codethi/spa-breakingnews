@@ -39,6 +39,8 @@ function CardNews({
 
   function onBtnComment() {
     document.querySelector(".form-comment").style.display = "flex";
+    document.querySelector(".comment-input").focus();
+    
   }
 
   async function onComment(e) {
@@ -141,6 +143,7 @@ function CardNews({
                   placeholder="Escreva um comentário"
                   name="message"
                   id="message"
+                  className="comment-input"
                   onChange={handleChangeValues}
                 />
                 <button type="submit">Comentar</button>
