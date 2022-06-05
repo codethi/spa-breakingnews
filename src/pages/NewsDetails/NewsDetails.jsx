@@ -13,6 +13,7 @@ function NewsDetails() {
   const [countComments, setCountComments] = useState(0);
   const [countLikes, setCountLikes] = useState(0);
   const [colorBtnLike, setColorBtnLike] = useState("#000");
+  const [refresh, setRefresh] = useState(0);
 
   const { id } = useParams();
 
@@ -95,6 +96,10 @@ function NewsDetails() {
     }
   }
 
+  function onChanges() {
+    setRefresh(refresh + 1);
+  }
+
   useEffect(() => {
     if (!jwt) {
       swal({
@@ -144,7 +149,7 @@ function NewsDetails() {
     }
 
     findNewsById();
-  }, []);
+  }, [refresh]);
 
   if (isLoading) {
     return <Loading />;
@@ -165,6 +170,7 @@ function NewsDetails() {
           colorBtnLike={colorBtnLike}
           findNewsById={findNewsById}
           datails={true}
+          onChanges={onChanges}
         />
       </div>
     </section>

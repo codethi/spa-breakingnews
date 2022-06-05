@@ -1,9 +1,10 @@
 import "./CardNews.css";
 
 import { FiMessageSquare, FiThumbsUp } from "react-icons/fi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { IoIosArrowDropleft } from "react-icons/io";
+import CardComments from "../CardComments/CardComments";
 
 function CardNews({
   news,
@@ -17,31 +18,82 @@ function CardNews({
   colorBtnLike,
   findNewsById,
   datails,
+  onChanges,
 }) {
   let navigate = useNavigate();
 
+  const [values, setValues] = useState();
+  const [comments, setComments] = useState([]);
+
   const { pathname } = useLocation();
+  const baseURL = import.meta.env.VITE_API_URL;
+  const jwt = localStorage.getItem("jwt");
 
   function goNewsDetails() {
     navigate(`/news-details/${news.id}`);
   }
 
+  const handleChangeValues = (event) => {
+    setValues({ [event.target.name]: event.target.value });
+  };
+
   function onBtnComment() {
     document.querySelector(".form-comment").style.display = "flex";
   }
 
-  function returnHome() {
-    navigate("/");
+  async function onComment(e) {
+    e.preventDefault();
+    const response = await fetch(`${baseURL}/posts/${news.id}/comment`, {
+      method: "PATCH",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      }),
+      body: JSON.stringify(values),
+    });
+
+    if (response.status == 401) {
+      return swal({
+        title: "Erro",
+        text: `Token inválido, faça o login!`,
+        icon: "error",
+        timer: "7000",
+      });
+    }
+
+    const data = await response.json();
+
+    if (response.status == 400) {
+      swal({
+        title: "Erro",
+        text: data.message,
+        icon: "error",
+        timer: "7000",
+      });
+    } else if (response.status == 200) {
+      swal({
+        text: data.message,
+        icon: "success",
+        timer: "7000",
+      });
+      e.target[0].value = "";
+      onChanges(response);
+    }
+  }
+
+  function returnRoute() {
+    navigate(-1);
   }
 
   useEffect(() => {
     datails ? findNewsById() : "";
+    setComments(news.comments?.reverse());
   }, []);
 
   return (
     <section className="card-news">
       {pathname.indexOf("news-details") != -1 ? (
-        <IoIosArrowDropleft className="card-icon-back" onClick={returnHome} />
+        <IoIosArrowDropleft className="card-icon-back" onClick={returnRoute} />
       ) : (
         ""
       )}
@@ -82,11 +134,23 @@ function CardNews({
             </div>
 
             <div className="card-footer">
-              <form className="form-comment">
+              <form className="form-comment" onSubmit={onComment}>
                 <img src={userLogged?.avatar} alt="Avatar user" />
-                <input type="text" placeholder="Escreva um comentário" />
+                <input
+                  type="text"
+                  placeholder="Escreva um comentário"
+                  name="message"
+                  id="message"
+                  onChange={handleChangeValues}
+                />
                 <button type="submit">Comentar</button>
               </form>
+
+              <span className="line"></span>
+
+              {comments?.map((item, idx) => (
+                <CardComments comment={item} key={idx} news={news} onChanges={onChanges}/>
+              ))}
             </div>
           </>
         ) : (

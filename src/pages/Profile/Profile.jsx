@@ -162,8 +162,8 @@ function Profile() {
     setRefresh(refresh + 1);
   }
 
-  function returnHome() {
-    navigate("/");
+  function returnRoute() {
+    navigate(-1);
   }
 
   if (isLoading) {
@@ -175,7 +175,7 @@ function Profile() {
       <header className="profile-header">
         <IoIosArrowDropleft
           className="profile-icon-backhome"
-          onClick={returnHome}
+          onClick={returnRoute}
         />
         <BiEdit
           className="profile-icon-edit"

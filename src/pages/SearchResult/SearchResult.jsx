@@ -18,9 +18,9 @@ function SearchResult() {
 
   const emptyInput = () => (document.querySelector(".search-input").value = "");
 
-  function returnHome() {
+  function returnRoute() {
     emptyInput();
-    navigate("/");
+    navigate(-1);
   }
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function SearchResult() {
       <div className="text-results">
         <IoIosArrowDropleft
           className="profile-icon-back"
-          onClick={returnHome}
+          onClick={returnRoute}
         />
         <span className="subtitle-result">
           {news.length != 0

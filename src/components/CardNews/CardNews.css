@@ -102,9 +102,15 @@
     background-color: #cccccc30;
 }
 
+.card-footer{
+    display: flex;
+    flex-direction: column;
+}
 
 .form-comment {
     width: 100%;
+
+    margin-bottom:  1rem;
 
     display: none;
     flex-direction: row;
