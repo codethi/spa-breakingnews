@@ -14,7 +14,7 @@ function SearchResult() {
   const [isLoading, setIsLoading] = useState(true);
   let navigate = useNavigate();
 
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = "https://api-breakingnews.onrender.com";
 
   const emptyInput = () => (document.querySelector(".search-input").value = "");
 

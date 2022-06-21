@@ -33,7 +33,7 @@ function CardNews({
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
   const { pathname } = useLocation();
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = "https://api-breakingnews.onrender.com";
   const jwt = localStorage.getItem("jwt");
 
   function goNewsDetails() {

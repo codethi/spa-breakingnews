@@ -18,7 +18,7 @@ function Profile() {
   const [refresh, setRefresh] = useState(0);
   const [formDatails, setFormDatails] = useState({});
 
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = "https://api-breakingnews.onrender.com";
   const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {

@@ -17,7 +17,7 @@ function NewsDetails() {
 
   const { id } = useParams();
 
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = "https://api-breakingnews.onrender.com";
   const jwt = localStorage.getItem("jwt");
 
   function handleExit() {

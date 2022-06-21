@@ -14,7 +14,7 @@ function Navbar() {
   const [userLogged, setUserLogged] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = "https://api-breakingnews.onrender.com";
   const jwt = localStorage.getItem("jwt");
 
   const fieldList = [
