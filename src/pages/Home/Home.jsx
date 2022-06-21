@@ -11,7 +11,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [userLogged, setUserLogged] = useState({});
 
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = "https://api-breakingnews.onrender.com";
   const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
