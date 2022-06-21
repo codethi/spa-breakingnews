@@ -211,6 +211,38 @@ function Modals({
     setIsLoading(false);
   };
 
+  const editPost = async () => {
+    setIsLoading(true);
+    const response = await fetch(`${baseURL}/posts/update/${formDetails.id}`, {
+      method: "PATCH",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      }),
+      body: JSON.stringify(values),
+    });
+    const result = await response.json();
+
+    if (response.status === 500 || response.status === 400) {
+      swal({
+        title: "Erro",
+        text: `${result.message}`,
+        icon: "error",
+        timer: "7000",
+      });
+    } else {
+      swal({
+        text: `${result.message}`,
+        icon: "success",
+        timer: "7000",
+      });
+      onChanges(response);
+      closeModal();
+    }
+
+    setIsLoading(false);
+  }
+
   function submitFunction(event) {
     event.preventDefault();
     switch (type) {
@@ -222,6 +254,8 @@ function Modals({
         return createNews();
       case "editUser":
         return editUser();
+      case "editPost":
+        return editPost();
     }
   }
 

@@ -12,7 +12,6 @@
 }
 
 .card-news:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     transform: scale(1);
 }
 
@@ -199,4 +198,19 @@
 
 .card-icon-back:hover {
     background-color: #0b7da2;
+}
+
+.card-icon-actions {
+    position: absolute;
+    top: .4rem;
+    right: 0;
+    color: #0bade3;
+    padding: .3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.card-icon-actions:hover {
+    color: #055773;
 }

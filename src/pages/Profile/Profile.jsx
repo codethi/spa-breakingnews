@@ -214,6 +214,7 @@ function Profile() {
               classCardImage={"card-image"}
               countComments={item.comments?.length}
               countLikes={item.likes?.length}
+              onChanges={onChanges}
             />
           );
         })}
@@ -235,18 +236,4 @@ function Profile() {
 
 export default Profile;
 
-/* swal({
-      title: "Erro",
-      text: "Erroooouuu",
-      icon: "error",
-      buttons: ["Não", "Sim"],
-    }).then((resp) => {
-      if (resp) {
-        swal({
-          title: "Boa",
-          text: "foi",
-          icon: "success",
-          timer: "2000",
-        });
-      }
-    }); */
+

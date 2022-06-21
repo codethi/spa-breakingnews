@@ -4,7 +4,10 @@ import { FiMessageSquare, FiThumbsUp } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { IoIosArrowDropleft } from "react-icons/io";
+import { BiEdit, BiDotsVerticalRounded, BiTrash } from "react-icons/bi";
 import CardComments from "../CardComments/CardComments";
+import Modals from "../Modals/Modals";
+import swal from "sweetalert";
 
 function CardNews({
   news,
@@ -25,6 +28,10 @@ function CardNews({
   const [values, setValues] = useState();
   const [comments, setComments] = useState([]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formDatails, setFormDatails] = useState({});
+  const [isActionsOpen, setIsActionsOpen] = useState(false);
+
   const { pathname } = useLocation();
   const baseURL = import.meta.env.VITE_API_URL;
   const jwt = localStorage.getItem("jwt");
@@ -40,7 +47,6 @@ function CardNews({
   function onBtnComment() {
     document.querySelector(".form-comment").style.display = "flex";
     document.querySelector(".comment-input").focus();
-    
   }
 
   async function onComment(e) {
@@ -87,15 +93,149 @@ function CardNews({
     navigate(-1);
   }
 
+  function handleModalOpen() {
+    setFormDatails({
+      id: news.id,
+      type: "editPost",
+      title: "Editar Noticia",
+      btnName: "Atualizar",
+      fieldList: [
+        {
+          field: "input",
+          type: "text",
+          name: "title",
+          id: "title",
+          placeholder: "Titulo",
+          value: news.title,
+        },
+        {
+          field: "input",
+          type: "text",
+          name: "banner",
+          id: "banner",
+          placeholder: "Banner",
+          value: news.banner,
+        },
+        {
+          field: "textarea",
+          type: "text",
+          name: "text",
+          cols: "30",
+          rows: "15",
+          id: "text",
+          placeholder: "Texto da noticia",
+          value: news.text,
+        },
+      ],
+    });
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
+
+  async function deletePost() {
+    const response = await fetch(`${baseURL}/posts/delete/${news.id}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      }),
+    });
+
+    if (response.status == 401) {
+      return swal({
+        title: "Erro",
+        text: `Token inválido, faça o login!`,
+        icon: "error",
+        timer: "7000",
+      });
+    }
+
+    const data = await response.json();
+
+    if (response.status == 400) {
+      swal({
+        title: "Erro",
+        text: data.message,
+        icon: "error",
+        timer: "7000",
+      });
+    } else if (response.status == 200) {
+      swal({
+        text: data.message,
+        icon: "success",
+        timer: "7000",
+      });
+      onChanges(response);
+    }
+  }
+
+  function handleDeleteModalOpen() {
+    swal({
+      title: "Apagar Noticia?",
+      icon: "error",
+      buttons: ["Não", "Sim"],
+    }).then((resp) => {
+      if (resp) {
+        deletePost();
+      }
+    });
+  }
+
+  function handleOpenActions() {
+    if (isActionsOpen) {
+      setIsActionsOpen(false);
+    } else {
+      setIsActionsOpen(true);
+    }
+  }
+
+  window.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("card-icon-actions")) {
+      setIsActionsOpen(false);
+    }
+  });
+
   useEffect(() => {
     datails ? findNewsById() : "";
     setComments(news.comments?.reverse());
+    setIsActionsOpen(false);
   }, []);
 
   return (
     <section className="card-news">
       {pathname.indexOf("news-details") != -1 ? (
         <IoIosArrowDropleft className="card-icon-back" onClick={returnRoute} />
+      ) : (
+        ""
+      )}
+
+      {pathname.indexOf("profile") != -1 ? (
+        <>
+          <BiDotsVerticalRounded
+            className="card-icon-actions"
+            onClick={handleOpenActions}
+          />
+          {isActionsOpen ? (
+            <div className="space-menu">
+              <ul>
+                <li onClick={handleModalOpen}>
+                  <BiEdit className="icon-menu" />
+                  Editar
+                </li>
+                <hr />
+                <li onClick={handleDeleteModalOpen}>
+                  <BiTrash className="icon-menu" />
+                  Apagar
+                </li>
+              </ul>
+            </div>
+          ) : (
+            ""
+          )}
+        </>
       ) : (
         ""
       )}
@@ -152,7 +292,12 @@ function CardNews({
               <span className="line"></span>
 
               {comments?.map((item, idx) => (
-                <CardComments comment={item} key={idx} news={news} onChanges={onChanges}/>
+                <CardComments
+                  comment={item}
+                  key={idx}
+                  news={news}
+                  onChanges={onChanges}
+                />
               ))}
             </div>
           </>
@@ -160,6 +305,17 @@ function CardNews({
           ""
         )}
       </div>
+
+      <Modals
+        isOpen={isModalOpen}
+        closeModal={handleCloseModal}
+        onChanges={onChanges}
+        type={formDatails.type}
+        title={formDatails.title}
+        btnName={formDatails.btnName}
+        fieldList={formDatails.fieldList}
+        id={formDatails?.id}
+      />
     </section>
   );
 }
