@@ -161,3 +161,9 @@ button.btn-menu:hover {
     width: 90%;
     margin: 0 auto;
 }
+
+@media (max-width: 1200px) {
+    .logo-image {
+        display: none;
+    }
+}

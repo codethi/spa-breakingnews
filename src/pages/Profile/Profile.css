@@ -116,3 +116,36 @@
     color: #fff;
     background-color: #0bade3;
 }
+
+@media (max-width: 1200px) {
+    .profile-actions {
+        padding: 1rem;
+    }
+
+    .profile-user {
+        padding: 1rem 0 1rem 1rem;
+    }
+
+    .profile-header{
+        width: 90%;
+    }
+
+    .profile-posts {
+        width: 90%;
+    }
+
+    .profile-icon-add {
+        background-color: transparent;
+        border-radius: 50%;
+        color: #0bade3;
+        outline: none;
+        border: none;
+        cursor: pointer !important;
+        font-family: Roboto, Arial;
+        font-weight: bold;
+        font-size: 2.5rem;
+        transform: scale(.9);
+
+        transition: all .3s ease-in-out;
+    }
+}

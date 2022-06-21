@@ -90,7 +90,7 @@ function CardNews({
   }
 
   function returnRoute() {
-    navigate(-1);
+    navigate("/");
   }
 
   function handleModalOpen() {

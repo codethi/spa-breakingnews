@@ -12,9 +12,30 @@
 }
 
 .news {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
     width: 80%;
     margin: 1rem 0;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .top-news{
+        margin-top: 6.5rem;
+        width: 90%;   
+    }
+    
+    .news {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: 1rem 0;
+    }
 }

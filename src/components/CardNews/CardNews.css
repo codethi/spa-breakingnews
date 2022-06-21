@@ -9,6 +9,7 @@
     position: relative;
     transform: scale(.99);
     transition: all .3s ease-in-out;
+    max-width: 100%;
 }
 
 .card-news:hover {
@@ -213,4 +214,54 @@
 
 .card-icon-actions:hover {
     color: #055773;
+}
+
+@media (max-width: 1200px) {
+    .card-news {
+        padding: 1rem;
+        transform: scale(1);
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 100%;
+        transition: all .3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
+        margin: 2rem 0;
+    }
+
+    .card h2 {
+        margin-bottom: 2rem;
+    }
+
+    .card p{
+        margin-bottom: 2rem;
+    }
+
+    .card-image-top img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+
+    .card-top {
+        display: flex;
+        flex-direction: column-reverse;
+        cursor: pointer;
+    }
+
+    
 }
