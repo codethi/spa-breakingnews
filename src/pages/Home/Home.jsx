@@ -10,8 +10,9 @@ function Home() {
   const [nextUrl, setNextUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userLogged, setUserLogged] = useState({});
-
-  const baseURL = "https://api-breakingnews.onrender.com";
+  
+  //https://api-breakingnews.onrender.com
+  const baseURL = "http://localhost:3001";
   const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {

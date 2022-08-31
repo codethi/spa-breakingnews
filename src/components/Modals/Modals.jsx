@@ -22,7 +22,7 @@ function Modals({
   const [isLoading, setIsLoading] = useState(false);
   const [formDetails, setFormDetails] = useState({});
 
-  const baseURL = "https://api-breakingnews.onrender.com";
+  const baseURL = "http://localhost:3001";
   const jwt = localStorage.getItem("jwt");
 
   const handleChangeValues = (event) => {

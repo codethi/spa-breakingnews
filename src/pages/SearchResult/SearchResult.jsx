@@ -14,7 +14,7 @@ function SearchResult() {
   const [isLoading, setIsLoading] = useState(true);
   let navigate = useNavigate();
 
-  const baseURL = "https://api-breakingnews.onrender.com";
+  const baseURL = "http://localhost:3001";
 
   const emptyInput = () => (document.querySelector(".search-input").value = "");
 

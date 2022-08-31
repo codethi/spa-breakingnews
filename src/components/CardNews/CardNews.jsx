@@ -33,7 +33,7 @@ function CardNews({
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
   const { pathname } = useLocation();
-  const baseURL = "https://api-breakingnews.onrender.com";
+  const baseURL = "http://localhost:3001";
   const jwt = localStorage.getItem("jwt");
 
   function goNewsDetails() {

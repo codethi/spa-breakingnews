@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { BiTrash } from "react-icons/bi";
 
 function CardComments({ comment, news, onChanges }) {
-  const baseURL = "https://api-breakingnews.onrender.com";
+  const baseURL = "http://localhost:3001";
   const jwt = localStorage.getItem("jwt");
 
   const [user, setUser] = useState({});

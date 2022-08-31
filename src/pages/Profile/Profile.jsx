@@ -18,7 +18,7 @@ function Profile() {
   const [refresh, setRefresh] = useState(0);
   const [formDatails, setFormDatails] = useState({});
 
-  const baseURL = "https://api-breakingnews.onrender.com";
+  const baseURL = "http://localhost:3001";
   const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
