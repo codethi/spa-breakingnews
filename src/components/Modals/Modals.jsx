@@ -1,4 +1,4 @@
-import "./Modals.css";
+import "./Modals.js";
 
 import Modal from "react-modal";
 import { BiX } from "react-icons/bi";
@@ -6,10 +6,21 @@ import { useState, useEffect, useContext } from "react";
 import Loading from "../Loading/Loading";
 import swal from "sweetalert";
 import { AuthContext } from "../../Contexts/AuthContext";
+import {
+  editUserService,
+  singinService,
+  singupService,
+} from "../../services/user.service";
+import { LoadContext } from "../../Contexts/LoadContext";
+import {
+  createNewsService,
+  editNewsService,
+} from "../../services/news.service";
+import { Button, Form, Input, P, TextArea } from "./Modals.js";
 
 Modal.setAppElement("#root");
 
-function Modals({
+export default function Modals({
   isOpen,
   closeModal,
   onChanges,
@@ -20,11 +31,10 @@ function Modals({
   id,
 }) {
   const [values, setValues] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [formDetails, setFormDetails] = useState({});
 
-  const baseURL = "http://localhost:3001";
   const { jwt, setJwt } = useContext(AuthContext);
+  const { isLoading, setIsLoading } = useContext(LoadContext);
 
   const handleChangeValues = (event) => {
     setValues((prevValue) => ({
@@ -95,68 +105,42 @@ function Modals({
     setFormDetails({ id, title, type, btnName, fieldList });
   }, [isOpen]);
 
-  const login = async () => {
+  const singin = async () => {
     setIsLoading(true);
-    const response = await fetch(`${baseURL}/auth/login`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
-      body: JSON.stringify(values),
-    });
-    const result = await response.json();
-
-    if (result.token) {
-      setJwt(result.token);
+    const resp = await singinService(values);
+    const jwt = resp.token;
+    if (jwt) {
+      setJwt(jwt);
       onChanges(response);
       closeModal();
     } else {
       swal({
         title: "Erro",
-        text: `${result.message}`,
+        text: `${resp.message}`,
         icon: "error",
         timer: "7000",
       });
     }
-
     setIsLoading(false);
   };
 
-  const register = async () => {
+  const singup = async () => {
     setIsLoading(true);
-    const response = await fetch(`${baseURL}/user/create`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-type": "application/json",
-      }),
-      body: JSON.stringify(values),
-    });
-    const result = await response.json();
-
-    const jwt = result.token;
-
+    const resp = await singupService(values);
+    const jwt = resp.token;
     if (jwt) {
-      localStorage.setItem("jwt", jwt);
+      setJwt(jwt);
       onChanges(response);
       closeModal();
     } else {
-      alert(result.message);
+      alert(resp);
     }
-
     setIsLoading(false);
   };
 
   const createNews = async () => {
     setIsLoading(true);
-    const response = await fetch(`${baseURL}/posts/create`, {
-      method: "POST",
-      headers: new Headers({
-        "Content-type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      }),
-      body: JSON.stringify(values),
-    });
-    const result = await response.json();
+    const response = await createNewsService(values, jwt);
 
     if (response.status === 500 || response.status === 400) {
       swal({
@@ -174,21 +158,12 @@ function Modals({
       onChanges(response);
       closeModal();
     }
-
     setIsLoading(false);
   };
 
   const editUser = async () => {
     setIsLoading(true);
-    const response = await fetch(`${baseURL}/user/update/${formDetails.id}`, {
-      method: "PATCH",
-      headers: new Headers({
-        "Content-type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      }),
-      body: JSON.stringify(values),
-    });
-    const result = await response.json();
+    const response = await editUserService(values, formDetails.id, jwt);
 
     if (response.status === 500 || response.status === 400) {
       swal({
@@ -206,21 +181,12 @@ function Modals({
       onChanges(response);
       closeModal();
     }
-
     setIsLoading(false);
   };
 
   const editPost = async () => {
     setIsLoading(true);
-    const response = await fetch(`${baseURL}/posts/update/${formDetails.id}`, {
-      method: "PATCH",
-      headers: new Headers({
-        "Content-type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      }),
-      body: JSON.stringify(values),
-    });
-    const result = await response.json();
+    const response = await editNewsService(values, formDetails.id, jwt);
 
     if (response.status === 500 || response.status === 400) {
       swal({
@@ -238,7 +204,6 @@ function Modals({
       onChanges(response);
       closeModal();
     }
-
     setIsLoading(false);
   };
 
@@ -246,9 +211,9 @@ function Modals({
     event.preventDefault();
     switch (type) {
       case "login":
-        return login();
+        return singin();
       case "register":
-        return register();
+        return singup();
       case "createNews":
         return createNews();
       case "editUser":
@@ -279,10 +244,10 @@ function Modals({
         </button>
         <h2 className="modal-title">{formDetails.title}</h2>
 
-        <form onSubmit={submitFunction}>
+        <Form onSubmit={submitFunction}>
           {formDetails.fieldList?.map((item, idx) => {
             return item.field == "input" ? (
-              <input
+              <Input
                 key={idx}
                 type={item.type}
                 name={item.name}
@@ -292,7 +257,7 @@ function Modals({
                 onChange={handleChangeValues}
               />
             ) : (
-              <textarea
+              <TextArea
                 key={idx}
                 type={item.type}
                 name={item.name}
@@ -302,20 +267,20 @@ function Modals({
                 placeholder={item.placeholder}
                 defaultValue={item.value}
                 onChange={handleChangeValues}
-              ></textarea>
+              ></TextArea>
             );
           })}
 
-          <button type="submit">{formDetails.btnName}</button>
-        </form>
+          <Button type="submit">{formDetails.btnName}</Button>
+        </Form>
 
         {formDetails.title == "Entrar" ? (
-          <p className="text-signup">
+          <P className="text-signup">
             Não tem uma conta?
-            <a className="signup" onClick={handleRegister}>
+            <A className="signup" onClick={handleRegister}>
               Cadastre-se
-            </a>
-          </p>
+            </A>
+          </P>
         ) : (
           ""
         )}
@@ -323,5 +288,3 @@ function Modals({
     </>
   );
 }
-
-export default Modals;
