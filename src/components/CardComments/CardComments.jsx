@@ -1,11 +1,11 @@
-import "./CardComments.css";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BiTrash } from "react-icons/bi";
+import { CardCommentContainer } from "./CardCommentStyled";
+import { AuthContext } from "../../Contexts/AuthContext";
 
-function CardComments({ comment, news, onChanges }) {
+export default function CardComments({ comment, news, onChanges }) {
   const baseURL = "http://localhost:3001";
-  const jwt = localStorage.getItem("jwt");
+  const { jwt } = useContext(AuthContext);
 
   const [user, setUser] = useState({});
   const [userLogged, setUserLogged] = useState({});
@@ -105,7 +105,7 @@ function CardComments({ comment, news, onChanges }) {
   }, []);
 
   return (
-    <section className="card-comment">
+    <CardCommentContainer>
       <img src={user.avatar} alt="" />
       <div>
         <h4>{user.name}</h4>
@@ -116,8 +116,6 @@ function CardComments({ comment, news, onChanges }) {
       ) : (
         ""
       )}
-    </section>
+    </CardCommentContainer>
   );
 }
-
-export default CardComments;

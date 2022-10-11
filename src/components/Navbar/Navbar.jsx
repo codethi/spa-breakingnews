@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../../images/LogoBN.png";
@@ -6,6 +6,7 @@ import { FiMenu, FiUser, FiLogOut } from "react-icons/fi";
 import Modals from "../Modals/Modals";
 import swal from "sweetalert";
 import "./Navbar.css";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 function Navbar() {
   let navigate = useNavigate();
@@ -15,7 +16,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const baseURL = "http://localhost:3001";
-  const jwt = localStorage.getItem("jwt");
+  const { jwt } = useContext(AuthContext);
 
   const fieldList = [
     {

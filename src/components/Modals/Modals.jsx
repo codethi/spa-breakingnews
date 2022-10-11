@@ -2,9 +2,10 @@ import "./Modals.css";
 
 import Modal from "react-modal";
 import { BiX } from "react-icons/bi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Loading from "../Loading/Loading";
 import swal from "sweetalert";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 Modal.setAppElement("#root");
 
@@ -16,14 +17,14 @@ function Modals({
   title,
   btnName,
   fieldList,
-  id
+  id,
 }) {
   const [values, setValues] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [formDetails, setFormDetails] = useState({});
 
   const baseURL = "http://localhost:3001";
-  const jwt = localStorage.getItem("jwt");
+  const { jwt, setJwt } = useContext(AuthContext);
 
   const handleChangeValues = (event) => {
     setValues((prevValue) => ({
@@ -105,10 +106,8 @@ function Modals({
     });
     const result = await response.json();
 
-    const jwt = result.token;
-
-    if (jwt) {
-      localStorage.setItem("jwt", jwt);
+    if (result.token) {
+      setJwt(result.token);
       onChanges(response);
       closeModal();
     } else {
@@ -241,7 +240,7 @@ function Modals({
     }
 
     setIsLoading(false);
-  }
+  };
 
   function submitFunction(event) {
     event.preventDefault();
