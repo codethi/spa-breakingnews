@@ -1,13 +1,18 @@
-import "./CardNews.css";
+import "./CardNewsStyled.js";
 
 import { FiMessageSquare, FiThumbsUp } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { BiEdit, BiDotsVerticalRounded, BiTrash } from "react-icons/bi";
 import CardComments from "../CardComments/CardComments";
 import Modals from "../Modals/Modals";
 import swal from "sweetalert";
+import { AuthContext } from "../../Contexts/AuthContext";
+import {
+  createCommentService,
+  deleteNewsService,
+} from "../../services/news.service";
 
 function CardNews({
   news,
@@ -33,8 +38,7 @@ function CardNews({
   const [isActionsOpen, setIsActionsOpen] = useState(false);
 
   const { pathname } = useLocation();
-  const baseURL = "http://localhost:3001";
-  const jwt = localStorage.getItem("jwt");
+  const { jwt } = useContext(AuthContext);
 
   function goNewsDetails() {
     navigate(`/news-details/${news.id}`);
@@ -51,14 +55,7 @@ function CardNews({
 
   async function onComment(e) {
     e.preventDefault();
-    const response = await fetch(`${baseURL}/posts/${news.id}/comment`, {
-      method: "PATCH",
-      headers: new Headers({
-        "Content-type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      }),
-      body: JSON.stringify(values),
-    });
+    const response = await createCommentService(news.id, values, jwt);
 
     if (response.status == 401) {
       return swal({
@@ -69,18 +66,16 @@ function CardNews({
       });
     }
 
-    const data = await response.json();
-
     if (response.status == 400) {
       swal({
         title: "Erro",
-        text: data.message,
+        text: response.data.message,
         icon: "error",
         timer: "7000",
       });
     } else if (response.status == 200) {
       swal({
-        text: data.message,
+        text: response.data.message,
         icon: "success",
         timer: "7000",
       });
@@ -136,13 +131,7 @@ function CardNews({
   }
 
   async function deletePost() {
-    const response = await fetch(`${baseURL}/posts/delete/${news.id}`, {
-      method: "DELETE",
-      headers: new Headers({
-        "Content-type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      }),
-    });
+    const response = await deleteNewsService(news.id, jwt);
 
     if (response.status == 401) {
       return swal({
@@ -153,18 +142,16 @@ function CardNews({
       });
     }
 
-    const data = await response.json();
-
     if (response.status == 400) {
       swal({
         title: "Erro",
-        text: data.message,
+        text: response.data.message,
         icon: "error",
         timer: "7000",
       });
     } else if (response.status == 200) {
       swal({
-        text: data.message,
+        text: response.data.message,
         icon: "success",
         timer: "7000",
       });
@@ -205,7 +192,7 @@ function CardNews({
   }, []);
 
   return (
-    <section className="card-news">
+    <CardNews>
       {pathname.indexOf("news-details") != -1 ? (
         <IoIosArrowDropleft className="card-icon-back" onClick={returnRoute} />
       ) : (
@@ -316,7 +303,7 @@ function CardNews({
         fieldList={formDatails.fieldList}
         id={formDatails?.id}
       />
-    </section>
+    </CardNews>
   );
 }
 

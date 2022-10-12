@@ -1,20 +1,32 @@
-.card-news {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: .3rem;
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-    padding: 2rem;
-    margin: .5rem 0;
-    position: relative;
-    transform: scale(.99);
-    transition: all .3s ease-in-out;
-    max-width: 100%;
-}
+import styled from "styled-components";
 
-.card-news:hover {
+export const CardNews = styled.section`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  padding: 2rem;
+  margin: 0.5rem 0;
+  position: relative;
+  transform: scale(0.99);
+  transition: all 0.3s ease-in-out;
+  max-width: 100%;
+
+  :hover {
     transform: scale(1);
-}
+  }
+`;
+
+export const Card = styled.div`
+  display: flex;
+  max-width: 100%;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+`;
+
+/* 
 
 .card {
     display: flex;
@@ -264,4 +276,4 @@
     }
 
     
-}
+} */

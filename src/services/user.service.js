@@ -10,7 +10,7 @@ export function singupService(body) {
 }
 
 export function singinService(body) {
-  const resp = axios.post(`${BASE_URL}/auth/login`, body).catch((error) => {
+  const resp = axios.post(`${baseURL}/auth/login`, body).catch((error) => {
     return error.resp;
   });
   return resp;
@@ -31,7 +31,7 @@ export function getUserLoggedService(jwt) {
 }
 
 export function editUserService(body, id, jwt) {
-  const response = axios.post(`${baseURL}/user/update/${id}`, body, {
+  const response = axios.patch(`${baseURL}/user/update/${id}`, body, {
     headers: { Authorization: `Bearer ${jwt}` },
   });
   return response;

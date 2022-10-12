@@ -14,7 +14,7 @@ import {
   createNewsService,
   editNewsService,
 } from "../../services/news.service";
-import { Button, Form, Input, P, TextArea } from "./Modals.js";
+import { Button, Form, Input, P, A, TextArea } from "./ModalsStyled.js";
 
 Modal.setAppElement("#root");
 
@@ -106,10 +106,10 @@ export default function Modals({
   const singin = async () => {
     setIsLoading(true);
     const resp = await singinService(values);
-    const jwt = resp.token;
+    const jwt = resp.data.token;
     if (jwt) {
       setJwt(jwt);
-      onChanges(response);
+      onChanges(resp);
       closeModal();
     } else {
       swal({
@@ -125,10 +125,10 @@ export default function Modals({
   const singup = async () => {
     setIsLoading(true);
     const resp = await singupService(values);
-    const jwt = resp.token;
+    const jwt = resp.data.token;
     if (jwt) {
       setJwt(jwt);
-      onChanges(response);
+      onChanges(resp);
       closeModal();
     } else {
       alert(resp);
@@ -143,13 +143,13 @@ export default function Modals({
     if (response.status === 500 || response.status === 400) {
       swal({
         title: "Erro",
-        text: `${result.message}`,
+        text: `${response.message}`,
         icon: "error",
         timer: "7000",
       });
     } else {
       swal({
-        text: `${result.message}`,
+        text: `${response.message}`,
         icon: "success",
         timer: "7000",
       });
@@ -166,13 +166,13 @@ export default function Modals({
     if (response.status === 500 || response.status === 400) {
       swal({
         title: "Erro",
-        text: `${result.message}`,
+        text: `${response.message}`,
         icon: "error",
         timer: "7000",
       });
     } else {
       swal({
-        text: `${result.message}`,
+        text: `${response.message}`,
         icon: "success",
         timer: "7000",
       });
@@ -189,13 +189,13 @@ export default function Modals({
     if (response.status === 500 || response.status === 400) {
       swal({
         title: "Erro",
-        text: `${result.message}`,
+        text: `${response.message}`,
         icon: "error",
         timer: "7000",
       });
     } else {
       swal({
-        text: `${result.message}`,
+        text: `${response.message}`,
         icon: "success",
         timer: "7000",
       });
