@@ -1,5 +1,3 @@
-import "./Modals.js";
-
 import Modal from "react-modal";
 import { BiX } from "react-icons/bi";
 import { useState, useEffect, useContext } from "react";

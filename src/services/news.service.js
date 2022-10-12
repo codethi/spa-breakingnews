@@ -14,3 +14,13 @@ export function editNewsService(body, id, jwt) {
   });
   return response;
 }
+
+export function deleteCommentService(newsId, commentId, jwt) {
+  const response = axios.patch(
+    `${baseURL}/posts/${newsId}/${commentId}/comment`,
+    {
+      headers: { Authorization: `Bearer ${jwt}` },
+    }
+  );
+  return response;
+}

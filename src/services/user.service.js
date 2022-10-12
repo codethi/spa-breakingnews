@@ -16,6 +16,20 @@ export function singinService(body) {
   return resp;
 }
 
+export function getUserByIdService(id, jwt) {
+  const response = axios.get(`${baseURL}/user/findById/${id}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+  return response;
+}
+
+export function getUserLoggedService(jwt) {
+  const response = axios.get(`${baseURL}/user/findById/`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+  return response;
+}
+
 export function editUserService(body, id, jwt) {
   const response = axios.post(`${baseURL}/user/update/${id}`, body, {
     headers: { Authorization: `Bearer ${jwt}` },

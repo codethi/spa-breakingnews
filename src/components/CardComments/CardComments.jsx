@@ -2,9 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { BiTrash } from "react-icons/bi";
 import { CardCommentContainer } from "./CardCommentStyled";
 import { AuthContext } from "../../Contexts/AuthContext";
+import { getUserLoggedService } from "../../services/user.service";
+import { deleteCommentService } from "../../services/news.service";
 
 export default function CardComments({ comment, news, onChanges }) {
-  const baseURL = "http://localhost:3001";
   const { jwt } = useContext(AuthContext);
 
   const [user, setUser] = useState({});
@@ -12,14 +13,7 @@ export default function CardComments({ comment, news, onChanges }) {
 
   async function getUser() {
     if (jwt) {
-      const response = await fetch(
-        `${baseURL}/user/findById/${comment.userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
+      const response = await getUserByIdService(comment.userId, jwt);
 
       if (response.status == 401) {
         handleExit();
@@ -31,18 +25,13 @@ export default function CardComments({ comment, news, onChanges }) {
         });
       }
 
-      const data = await response.json();
-      setUser(data);
+      setUser(response.data.result);
     }
   }
 
   async function getUserLogged() {
     if (jwt) {
-      const response = await fetch(`${baseURL}/user/findById`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const response = await getUserLoggedService(jwt);
 
       if (response.status == 401) {
         handleExit();
@@ -53,22 +42,15 @@ export default function CardComments({ comment, news, onChanges }) {
           timer: "7000",
         });
       }
-
-      const data = await response.json();
-      setUserLogged(data);
+      setUserLogged(response.data.result);
     }
   }
 
   async function deleteComment() {
-    const response = await fetch(
-      `${baseURL}/posts/${news.id}/${comment.idComment}/comment`,
-      {
-        method: "PATCH",
-        headers: new Headers({
-          "Content-type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        }),
-      }
+    const response = await deleteCommentService(
+      news.id,
+      comment.idComment,
+      jwt
     );
 
     if (response.status == 401) {
@@ -80,18 +62,16 @@ export default function CardComments({ comment, news, onChanges }) {
       });
     }
 
-    const data = await response.json();
-
     if (response.status == 400) {
       swal({
         title: "Erro",
-        text: data.message,
+        text: response.message,
         icon: "error",
         timer: "7000",
       });
     } else if (response.status == 200) {
       swal({
-        text: data.message,
+        text: response.message,
         icon: "success",
         timer: "7000",
       });
